@@ -1,4 +1,7 @@
 import random
+import os
+import sys
+
 
 def game():
     while True:
@@ -33,6 +36,6 @@ while True:
     game()
     restart = input('Do you want to restart? Y/N ')
     if restart == 'N' or 'n':
-        break
-    elif restart == 'Y' or 'y':
         continue
+    elif restart == 'Y' or 'y':
+        os.execl(sys.executable, ['Dice Rolling Simulator'], *sys.argv)
