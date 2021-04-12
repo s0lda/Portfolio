@@ -34,7 +34,7 @@ def game():
 
 while True:
     game()
-    restart = input('Do you want to restart? Y/N ')
+    restart = input('DO you want to play again? Press any key. ')
     if restart == 'N' or 'n':
         continue
     elif restart == 'Y' or 'y':
