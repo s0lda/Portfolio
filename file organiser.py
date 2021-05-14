@@ -1,4 +1,4 @@
-# simple Downloads content organiser
+# simple Downloads File content organiser
 from pathlib import Path
 import os, shutil
 
@@ -9,21 +9,22 @@ music_path = str(Path.home() / 'Music')
 videos_path = str(Path.home() / 'Videos')
 documents_path = str(Path.home() / 'Documents')
 
-#declare file extensions
-music_ext = ('.mp3', '.wma')
-videos_ext = ('.avi', '.mp4')
-documents_ext = ('.pdf', '.doc', '.docx', )
-pictures_ext = ('.jpg', '.jpg', '.gif', '.png')
+# declare file extensions
+music_ext = ('.mp3', '.wma', '.mid', '.m4a', '.ogg', '.flac', '.wav', '.amr')
+videos_ext = ('.avi', '.mp4', '.m4v', '.mkv', '.mov', '.wmv', '.mpg', '.flv')
+documents_ext = ('.pdf', '.doc', '.docx', '.docm', '.dot', '.dotm', '.dotx', '.html', '.txt', '.xps', 
+'.csv', '.xls', '.xlsb', '.xlsm', '.xltx', '.xps', '.xml')
+pictures_ext = ('.jpg', '.jpg', '.gif', '.png','.jpx', '.gif', '.bmp', '.ico')
 
 
-#files to move
+# files to move
 music = []
 videos = []
 documents = []
 pictures = []
 
 files = os.listdir(downloads_path)
-#  check for extensions
+# check for extensions
 for file in files:
     ext = os.path.splitext(file)[-1]
     if ext in music_ext:
@@ -35,6 +36,7 @@ for file in files:
     elif ext in pictures_ext:
         pictures.append(file)
 
+# move files to the new directory
 for item in files:
     if item in music:
         dir = downloads_path + '\\' + item
