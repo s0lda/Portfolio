@@ -16,7 +16,7 @@ if choice.upper() == 'H':
         elif guess < number:
             attempts += 1
             print('Too low.')
-        elif guess > number:
+        else:
             attempts += 1
             print('Too high.')
 
@@ -25,20 +25,19 @@ elif choice.upper() == 'C':
     secret_number = int(input('OK, pick a number between 1 and 100 and let Computer guess it. '))
     attempts = 0
     computer_choice = random.randint(1, 100)
-    higher = 100
-    lower = 1
+    higher = 101
+    lower = 0
     
     while computer_choice != secret_number:
         if computer_choice > secret_number:
             print('Computer is guessing it could be : %d' % (computer_choice))
             higher = computer_choice
-            computer_choice = random.randint(lower, higher)
-        elif computer_choice < secret_number:
+            computer_choice = random.randint(lower + 1, higher - 1)
+        else:
             print('Computer is guessing it could be : %d' % (computer_choice))
             lower = computer_choice
-            computer_choice = random.randint(lower, higher)
-        else:
-            print('Computer gave up.. joking only, he would never do that.')
+            computer_choice = random.randint(lower + 1, higher - 1)
+        
         attempts += 1
     print('Computer guessed your number in %d attempts.' % (attempts))
     
