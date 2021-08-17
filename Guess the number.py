@@ -1,7 +1,7 @@
 import random
 
 print('Do you want to guess the number or do you want me to guess?')
-choice = input('Choose H for Human if you want to gues or C for Computer if you want computer to guess. ')
+choice = input('Choose H for Human if you want to guess or C for Computer if you want computer to guess. ')
 
 if choice.upper() == 'H':
     guess = 0
