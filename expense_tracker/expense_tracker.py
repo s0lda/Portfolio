@@ -239,7 +239,7 @@ other_button.grid(row= 4, column= 2, ipadx= 0, ipady= 5, padx= 0, pady= 20)
 income_label_total = ttk.Label(income, text= 'TOTAL:', style= 'Main.TLabel')
 income_label_total.grid(row= 5, column= 0, ipadx= 5, ipady= 0, padx= 5, pady= 70, sticky= 'w')
 totinc_value = ttk.Label(income, text= f'£{totinc_int}', style= "Main.TLabel")
-totinc_value.grid(row= 5, column= 2, ipadx= 0, ipady= 5, padx= 0, pady= 70, sticky= 'e')
+totinc_value.grid(row= 5, column= 3, ipadx= 0, ipady= 5, padx= 0, pady= 70)
 
 
 # expenses tab
