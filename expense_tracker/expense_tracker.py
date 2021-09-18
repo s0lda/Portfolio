@@ -88,6 +88,7 @@ def do_balance(json_file):
 
 do_balance(json_file)
 
+
 # get data from input and add it to right balance
 def retrive_value(name, json_name, json_file):
     input_value = name.get()
