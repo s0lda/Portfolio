@@ -241,7 +241,6 @@ income_label_total.grid(row= 5, column= 0, ipadx= 5, ipady= 0, padx= 5, pady= 70
 totinc_value = ttk.Label(income, text= f'£{totinc_int}', style= "Main.TLabel")
 totinc_value.grid(row= 5, column= 3, ipadx= 0, ipady= 5, padx= 0, pady= 70)
 
-
 # expenses tab
 expenses_label_house = ttk.Label(expenses, text= 'House:', style= 'Main.TLabel')
 expenses_label_house.grid(row= 1, column= 0, ipadx= 5, ipady= 5, padx= 5, pady= 20, sticky= 'w')
