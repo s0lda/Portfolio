@@ -74,6 +74,7 @@ class Music_Player(tk.Tk):
             else:
                 stop()
 
+
         play_stop_button = ttk.Button(self, text= is_playing(self.playing_state), command= lambda: play_stop(self.playing_state))
         play_stop_button.grid(row= 1, column= 0,  padx= 0, pady= 15, ipadx= 35, ipady= 20)
         
