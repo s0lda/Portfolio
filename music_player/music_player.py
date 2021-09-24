@@ -26,7 +26,7 @@ class Music_Player(tk.Tk):
 
 
         # check if it is playing to display right button.
-        def is_playing(state):
+        def is_playing(state: bool):
             if state == False:
                 return 'PLAY'
             else:
@@ -62,13 +62,13 @@ class Music_Player(tk.Tk):
             self.pause_state = False
 
 
-        def is_pause(state):
+        def is_pause(state: bool):
             if state == False:
                 pause()
             else:
                 unpause()
 
-        def play_stop(state):
+        def play_stop(state: bool):
             if state == False:
                 play()
             else:
