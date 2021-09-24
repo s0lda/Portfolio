@@ -1,5 +1,4 @@
 import tkinter as tk
-import os
 from tkinter.constants import END, INSERT
 from ttkbootstrap import Style
 from tkinter import filedialog
