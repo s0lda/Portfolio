@@ -5,7 +5,7 @@ import os, json
 import copy
 
 
-class Staff_Manager(tk.Tk):
+class StaffManager(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         self.check_save_file()
@@ -32,7 +32,7 @@ class Staff_Manager(tk.Tk):
 
     def buttons(self):
         # managing buttons, main window
-        add = ttk.Button(self, text= 'Add', command= Add_New_Emp)
+        add = ttk.Button(self, text= 'Add', command= AddNewEmp)
         add.place(x= 10, y= 10, width= 75)
         
         amend = ttk.Button(self, text= 'Amend', command= self.amend)
@@ -300,7 +300,7 @@ class Staff_Manager(tk.Tk):
         
 
 
-class Add_New_Emp(Toplevel):
+class AddNewEmp(Toplevel):
     def __init__(self) -> None:
         super().__init__()
 
@@ -417,4 +417,4 @@ class Add_New_Emp(Toplevel):
         
 
 if __name__ == "__main__":
-    Staff_Manager().mainloop()
+    StaffManager().mainloop()
