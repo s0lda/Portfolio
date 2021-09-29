@@ -16,9 +16,6 @@ class Staff_Manager(tk.Tk):
 
         self.buttons()
         self.data_view()
-        self.update
-        self.delete
-        self.is_retired
 
 
     # check if data save file exists and if not create one.
