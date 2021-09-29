@@ -1,7 +1,6 @@
 from json.decoder import JSONDecodeError
 import tkinter as tk
 from tkinter import StringVar, Toplevel, ttk
-from ttkbootstrap import Style
 import os, json
 import copy
 
