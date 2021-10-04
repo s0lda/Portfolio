@@ -93,7 +93,6 @@ class Window(tk.Tk):
                 return data
 
 
-
         def accept_new_emp():
             # get all the data
             name = check_empty_entry(name_ent.get())
@@ -274,6 +273,8 @@ class Window(tk.Tk):
 
         cancel_button = ttk.Button(retired_win, text='CANCEL', command=retired_win.destroy)
         cancel_button.place(x=150, y=60)
+
+
 
 class EmployeeDatabase:
     def __init__(self, json_file: str) -> None:
