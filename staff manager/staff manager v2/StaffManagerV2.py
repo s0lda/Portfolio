@@ -93,7 +93,7 @@ class Window(tk.Tk):
                 return data
 
 
-        def accept_new_emp():
+        def accept_new_emp() -> None:
             # get all the data
             name = check_empty_entry(name_ent.get())
             surname = check_empty_entry(surname_ent.get())
