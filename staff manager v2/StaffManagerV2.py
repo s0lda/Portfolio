@@ -1,12 +1,10 @@
 import json
 from os import path
 import tkinter as tk
-from tkinter import StringVar, Variable, ttk
-from dataclasses import dataclass
+from tkinter import StringVar, ttk
 import os
 from tkinter.constants import CENTER, NO
 from ttkbootstrap import Style
-import copy
 
 
 class Window(tk.Tk):
@@ -165,7 +163,7 @@ class Window(tk.Tk):
 
 
         ok_button = ttk.Button(new_emp_win, text='ADD', command=accept_new_emp)
-        ok_button.place(x= 100, y= 350)
+        ok_button.place(x=100, y=350)
 
         cancel_button = ttk.Button(new_emp_win, text='CANCEL', command=new_emp_win.destroy)
         cancel_button.place(x=200, y=350)
@@ -258,7 +256,7 @@ class Window(tk.Tk):
 
 
         ok_button = ttk.Button(amend_win, text='CHANGE', command=lambda: [self.change_details(self.data_options.index(self.choice.get()), is_empty(main_entry.get())), amend_win.destroy()])
-        ok_button.place(x= 60, y= 200)
+        ok_button.place(x=60, y=200)
 
         cancel_button = ttk.Button(amend_win, text='CANCEL', command=amend_win.destroy)
         cancel_button.place(x=150, y=200)

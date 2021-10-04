@@ -1,31 +1,3 @@
 {
-    "people": [
-        {
-            "name": "James",
-            "surname": "Bond",
-            "position": "Agent",
-            "dob": "Unknown",
-            "start": "Unknown",
-            "end": "Unknown",
-            "retired": "Yes"
-        },
-        {
-            "name": "Clark",
-            "surname": "Kent",
-            "position": "Superman",
-            "dob": "n/a",
-            "start": "n/a",
-            "end": "n/a",
-            "retired": "Yes"
-        },
-        {
-            "name": "Test",
-            "surname": "User",
-            "position": "boss",
-            "dob": "12/12/12",
-            "start": "01/02/10",
-            "end": "12/12/13",
-            "retired": "Yes"
-        }
-    ]
+    "people": []
 }
