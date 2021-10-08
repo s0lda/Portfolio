@@ -1,0 +1,8 @@
+Icons downloaded from:
+https://www.iconfinder.com/iconsets/tango-icon-library
+Credit to user Tango for great work.
+
+Icons are used under:
+Attribution-NonCommercial 3.0 Netherlands (CC BY-NC 3.0 NL)
+
+Icons are used only for my non-commercial weather app project. 
