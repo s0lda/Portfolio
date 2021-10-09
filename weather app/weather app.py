@@ -2,6 +2,7 @@ import tkinter as tk
 import requests, json, os
 from tkinter import StringVar, ttk
 from pathlib import Path
+from typing import Optional
 
 
 class Window(tk.Tk):
@@ -10,10 +11,10 @@ class Window(tk.Tk):
         self._db = database
         self._icons = icons
  
-        self.enter_city()
-        self.update_vars()
+        self.enter_city_field()
+        self.create_vars()
         self.labels()
-        self.weather_img()
+        self.set_weather_img()
         # auto update function, 'while typing' style    
         self.update_data()
         
@@ -22,7 +23,7 @@ class Window(tk.Tk):
         self.iconbitmap(f'{icons}\\icon.ico')
 
 
-    def weather_img(self) -> None:
+    def set_weather_img(self) -> None:
         # set weather image
         self.icon = StringVar()
         self.icon.set(WeatherData.get_icon_code(self.weather))
@@ -37,14 +38,14 @@ class Window(tk.Tk):
         self.image_lbl.place(x=45, y=35)            
 
 
-    def enter_city(self) -> None:
+    def enter_city_field(self) -> None:
         # City entry
         self.city_ent = ttk.Entry(self, justify='center', width=50)
         self.city_ent.place(x=20, y=10)
         self.city_var = StringVar(value='Warsaw')
 
 
-    def update_vars(self) -> None:
+    def create_vars(self) -> None:
         # Get weather data for City
         self.weather = WeatherData.get_weather(self._db, self.city_var.get())
         
@@ -89,9 +90,9 @@ class Window(tk.Tk):
         # destroy icon label, so new one won't be on top of old one
         self.image_lbl.destroy()
         # refresh icon label
-        self.weather_img()
+        self.set_weather_img()
         self.after(1000, self.update_data)
-
+    
 
 
 class WeatherData:
@@ -100,14 +101,14 @@ class WeatherData:
 
     # excepting KeyError for autoupdate. App won't stop working while typing new city name
 
-    def get_weather(self, city: str) -> list:
+    def get_weather(self, city: str) -> dict:
         url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={self._key}'
         response = requests.get(url)
         data = response.json()
         return data
 
 
-    def get_temp(data: list) -> str:
+    def get_temp(data: dict) -> Optional[str]:
         try:
             celsius = data['main']['temp']
             return str(round(celsius))
@@ -115,7 +116,7 @@ class WeatherData:
             pass
 
 
-    def get_predicted_weather(data: list) -> str:
+    def get_predicted_weather(data: dict) -> Optional[str]:
         try:    
             sky = data['weather']
             for item in sky:
@@ -126,7 +127,7 @@ class WeatherData:
             pass
 
 
-    def get_wind_direction(data: list) -> str:
+    def get_wind_direction(data: dict) -> Optional[str]:
         try:    
             wind = data['wind']['deg']
             if wind == 0:
@@ -150,7 +151,7 @@ class WeatherData:
 
 
     # get icon code to display right weather icon
-    def get_icon_code(data: list) -> str:
+    def get_icon_code(data: dict) -> Optional[str]:
         try:    
             info = data['weather']
             for item in info:
