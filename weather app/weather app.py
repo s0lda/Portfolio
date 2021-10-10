@@ -28,12 +28,12 @@ class Window(tk.Tk):
         self.icon = StringVar()
         self.icon.set(WeatherData.get_icon_code(self.weather))
         # weather icon path
-        weather_icon = Path(f'{icons}\\{self.icon.get()}.png')
+        weather_icon = Path(f'{self._icons}\\{self.icon.get()}.png')
         # ensure during changing city when icon code not availabe there is no error, refresh icon on the screen
         if weather_icon.is_file():
-            self.weather_image = tk.PhotoImage(file=f'{icons}\\{self.icon.get()}.png')
+            self.weather_image = tk.PhotoImage(file=f'{self._icons}\\{self.icon.get()}.png')
         else:
-            self.weather_image = tk.PhotoImage(file=f'{icons}\\refresh.png')
+            self.weather_image = tk.PhotoImage(file=f'{self._icons}\\refresh.png')
         self.image_lbl = ttk.Label(self, image=self.weather_image)
         self.image_lbl.place(x=45, y=35)            
 
