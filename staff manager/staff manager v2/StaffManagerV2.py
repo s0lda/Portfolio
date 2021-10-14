@@ -198,8 +198,6 @@ class Window(tk.Tk):
         # need it as tuple for 'for loop' comparison
         details_tup = tuple(details)
 
-        emp_to_change = details
-
         # copy rest of emps
         new_data = []
         for employee in EmployeeDatabase.load(self._db):
