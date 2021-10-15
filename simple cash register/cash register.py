@@ -199,7 +199,7 @@ class Application(tk.Tk):
             item_new_data.place(x=10, y=90)
 
             new_data_entry = ttk.Entry(amend_win, justify='right')
-            new_data_entry.place(x=10, y= 130)
+            new_data_entry.place(x=10, y=130)
 
 
             def accept_new_data(detailIndex: int, newDetail: Any) -> None:
