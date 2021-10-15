@@ -2,7 +2,7 @@ import tkinter as tk
 import os, json
 from typing import Any
 from tkinter import DoubleVar, StringVar, ttk
-from tkinter.constants import CENTER, END, NO
+from tkinter.constants import CENTER, NO
 
 
 class Application(tk.Tk):
@@ -25,6 +25,9 @@ class Application(tk.Tk):
     def createButtons(self) -> None:
         addToCart = ttk.Button(self, text='Add to basket', command=self.addToBasket)
         addToCart.place(x=10, y=10, width=90, height=50)
+
+        deleteFromCart = ttk.Button(self, text='Remove', command=self.removeFromBasket)
+        deleteFromCart.place(x=10, y=70, width=90, height=50)
         
         stockManagment = ttk.Button(self, text='Manage Stock', command=self.manageStockWindow)
         stockManagment.place(x=10, y=430, width=90)
@@ -291,8 +294,8 @@ class Application(tk.Tk):
 
 
         tk.quantityVar = DoubleVar(value=getMaxQuantity(tk.choosenItem.get()))
-        quantityAmountLabel = ttk.Label(basketWin, textvariable=tk.quantityVar, justify='right', background='lightgrey')
-        quantityAmountLabel.place(x=215, y=110)
+        quantityAmountLabel = ttk.Label(basketWin, textvariable=tk.quantityVar, justify='right', background='lightgrey', anchor='e')
+        quantityAmountLabel.place(x=120, y=110, width=120)
 
         tk.entryVar = DoubleVar()
         quantityEntry = ttk.Entry(basketWin, textvariable=tk.entryVar, justify='right')
@@ -372,28 +375,28 @@ class Application(tk.Tk):
 
 
         self.totalVar = DoubleVar(value=calculateTotal())
-        totalValue = ttk.Label(self, textvariable=self.totalVar, background='lightgrey')
-        totalValue.place(x=330, y=420)
+        totalValue = ttk.Label(self, textvariable=self.totalVar, background='lightgrey', width=10, anchor='e')
+        totalValue.place(x=315, y=420, width=40)
 
         self.taxVar = DoubleVar(value=calculateTax(self.totalVar.get()))
-        taxValue = ttk.Label(self, textvariable=self.taxVar, background='lightgrey')
-        taxValue.place(x=330, y=445)
+        taxValue = ttk.Label(self, textvariable=self.taxVar, background='lightgrey', width=10, anchor='e')
+        taxValue.place(x=315, y=445)
 
         self.toPayVar = DoubleVar(value=self.taxVar.get() + self.totalVar.get())
-        toPayValue = ttk.Label(self, textvariable=self.toPayVar, background='lightgrey')
-        toPayValue.place(x=330, y=470)
+        toPayValue = ttk.Label(self, textvariable=self.toPayVar, background='lightgrey', width=10, anchor='e')
+        toPayValue.place(x=315, y=470)
 
 
         def updateTotals() -> None:
             self.totalVar = DoubleVar(value=calculateTotal())
             self.taxVar = DoubleVar(value=calculateTax(self.totalVar.get()))
             self.toPayVar = DoubleVar(value=self.taxVar.get() + self.totalVar.get())
-            totalValue = ttk.Label(self, textvariable=self.totalVar, background='lightgrey')
-            totalValue.place(x=330, y=420)
-            taxValue = ttk.Label(self, textvariable=self.taxVar, background='lightgrey')
-            taxValue.place(x=330, y=445)
-            toPayValue = ttk.Label(self, textvariable=self.toPayVar, background='lightgrey')
-            toPayValue.place(x=330, y=470)
+            totalValue = ttk.Label(self, textvariable=self.totalVar, background='lightgrey', width=10, anchor='e')
+            totalValue.place(x=315, y=420)
+            taxValue = ttk.Label(self, textvariable=self.taxVar, background='lightgrey', width=10, anchor='e')
+            taxValue.place(x=315, y=445)
+            toPayValue = ttk.Label(self, textvariable=self.toPayVar, background='lightgrey', width=10, anchor='e')
+            toPayValue.place(x=315, y=470)
             self.after(1000, updateTotals)
         updateTotals()
 
@@ -436,6 +439,13 @@ class Application(tk.Tk):
         self.shoppingList.delete(*self.shoppingList.get_children())
         
 
+    def removeFromBasket(self) -> None:
+        # except IndexError for deleting when list is empty
+        try:
+            selectedItem = self.shoppingList.selection()[0]
+            self.shoppingList.delete(selectedItem)
+        except IndexError:
+            pass
 
 
 class StockDatabase:
