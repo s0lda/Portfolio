@@ -148,23 +148,27 @@ class Application(tk.Tk):
             itemInfo = stockList.item(currentItem)
             itemDetails = itemInfo["values"]
             
-            # corrected for 'for' loop comparison. .focus() .item() returned all values as str
-            correctedType = (itemDetails[0], float(itemDetails[1]), float(itemDetails[2]), float(itemDetails[3]))
+            # excepting index error if someone would press delete when stock list is empty
+            try:
+                # corrected for 'for' loop comparison. .focus() .item() returned all values as str
+                correctedType = (itemDetails[0], float(itemDetails[1]), float(itemDetails[2]), float(itemDetails[3]))
 
-            # delete item
-            newData: list[Any] = []
-            for item in StockDatabase.loadData(self._db):
-                if item != correctedType:
-                    newData.append(item)
+                # delete item
+                newData: list[Any] = []
+                for item in StockDatabase.loadData(self._db):
+                    if item != correctedType:
+                        newData.append(item)
 
-            StockDatabase.createNewStockFile(self._db)
+                StockDatabase.createNewStockFile(self._db)
 
-            for item in newData:
-                StockDatabase.addNewStockItem(self._db, item)
+                for item in newData:
+                    StockDatabase.addNewStockItem(self._db, item)
 
-            # refresh stock list
-            mngStockWin.destroy()
-            self.manageStockWindow()
+                # refresh stock list
+                mngStockWin.destroy()
+                self.manageStockWindow()
+            except IndexError:
+                pass
 
 
         # delete button
@@ -239,7 +243,6 @@ class Application(tk.Tk):
             cancelButton.place(x=150, y=200)
 
 
-
         amendButton = ttk.Button(mngStockWin, text='CHANGE', command=amendItemDetails)
         amendButton.place(x=90, y=550, height=30)
     
@@ -266,6 +269,8 @@ class Application(tk.Tk):
             choice: list[str] = []
             for item in StockDatabase.loadData(self._db):
                 choice.append(item[0])
+            if len(choice) == 0:
+                choice = ['Nothing in stock']
             return choice
 
 
@@ -314,18 +319,23 @@ class Application(tk.Tk):
         def addToShoppingList(item: str, quantity: float) -> None:
             productToAdd: list[Any] = []
             productToAdd.append(item)
-            # ensure it can't be added more than in the stock
-            if quantity >= getMaxQuantity(tk.choosenItem.get()):
-                productToAdd.append(getMaxQuantity(tk.choosenItem.get()))
-            else:
-                productToAdd.append(quantity)
-            for product in StockDatabase.loadData(self._db):
-                if product[0] == item:
-                    productToAdd.append(product[1])
-            total = productToAdd[1] * productToAdd[2]
-            productToAdd.append(total)
+            # excepting TypeError if someone will try to add items when stock_data is empty
+            try:
+                # ensure it can't be added more than in the stock
+                if quantity >= getMaxQuantity(tk.choosenItem.get()):
+                    productToAdd.append(getMaxQuantity(tk.choosenItem.get()))
+                else:
+                    productToAdd.append(quantity)
+                for product in StockDatabase.loadData(self._db):
+                    if product[0] == item:
+                        productToAdd.append(product[1])
+                total = productToAdd[1] * productToAdd[2]
+                productToAdd.append(total)
 
-            self.shoppingList.insert('', tk.END, values=productToAdd)
+                self.shoppingList.insert('', tk.END, values=productToAdd)
+            except TypeError:
+                pass
+
 
         addButton = ttk.Button(basketWin, text='ADD', command=lambda: addToShoppingList(tk.choosenItem.get(), tk.entryVar.get()))
         addButton.place(x=30, y=150)
