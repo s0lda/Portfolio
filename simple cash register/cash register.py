@@ -16,503 +16,503 @@ class Application(tk.Tk):
         self.title('Cash Register')
         self.iconbitmap('icon.ico')
         
-        self.createButtons()
-        self.createPurchaseList()
-        self.createLabels()
+        self.create_buttons()
+        self.create_purchase_list()
+        self.create_labels()
 
 
-    def createButtons(self) -> None:
-        addToCart = ttk.Button(self, text='Add to basket', command=self.addToBasket)
-        addToCart.place(x=10, y=10, width=90, height=50)
+    def create_buttons(self) -> None:
+        add_to_cart = ttk.Button(self, text='Add to basket', command=self.add_to_basket)
+        add_to_cart.place(x=10, y=10, width=90, height=50)
 
-        deleteFromCart = ttk.Button(self, text='Remove', command=self.removeFromBasket)
-        deleteFromCart.place(x=10, y=70, width=90, height=50)
+        delete_from_cart = ttk.Button(self, text='Remove', command=self.remove_from_basket)
+        delete_from_cart.place(x=10, y=70, width=90, height=50)
         
-        stockManagment = ttk.Button(self, text='Manage Stock', command=self.manageStockWindow)
-        stockManagment.place(x=10, y=430, width=90)
+        stock_managment = ttk.Button(self, text='Manage Stock', command=self.manage_stock_window)
+        stock_managment.place(x=10, y=430, width=90)
         
-        exitButton = ttk.Button(self, text='EXIT', command= self.destroy)
-        exitButton.place(x=10, y=460, width=90)
+        exit_button = ttk.Button(self, text='EXIT', command= self.destroy)
+        exit_button.place(x=10, y=460, width=90)
         
-        paymentButton = ttk.Button(self, text='PAY', command=self.getPayment)
-        paymentButton.place(x=390, y=420, height=70, width=90)
+        payment_button = ttk.Button(self, text='PAY', command=self.get_payment)
+        payment_button.place(x=390, y=420, height=70, width=90)
 
 
-    def createPurchaseList(self) -> None:
+    def create_purchase_list(self) -> None:
         columns = ('#1', '#2', '#3', '#4')
         # set shopping list panel
-        self.shoppingList = ttk.Treeview(self, columns=columns, show='headings', height=27, selectmode='browse')
-        self.shoppingList.place(x=150, y=10, width=330, height=400)
+        self.shopping_list = ttk.Treeview(self, columns=columns, show='headings', height=27, selectmode='browse')
+        self.shopping_list.place(x=150, y=10, width=330, height=400)
 
-        self.shoppingList.heading('#1', text='Product')
-        self.shoppingList.heading('#2', text='#')       # quantity
-        self.shoppingList.heading('#3', text='#')       # price per item
-        self.shoppingList.heading('#4', text='Sum')
+        self.shopping_list.heading('#1', text='Product')
+        self.shopping_list.heading('#2', text='#')       # quantity
+        self.shopping_list.heading('#3', text='#')       # price per item
+        self.shopping_list.heading('#4', text='Sum')
 
-        self.shoppingList.column('#1', anchor=CENTER, stretch=NO, width=157)
-        self.shoppingList.column('#2', anchor=CENTER, stretch=NO, width=50)
-        self.shoppingList.column('#3', anchor=CENTER, stretch=NO, width=50)
-        self.shoppingList.column('#4', anchor=CENTER, stretch=NO, width=70)
+        self.shopping_list.column('#1', anchor=CENTER, stretch=NO, width=157)
+        self.shopping_list.column('#2', anchor=CENTER, stretch=NO, width=50)
+        self.shopping_list.column('#3', anchor=CENTER, stretch=NO, width=50)
+        self.shopping_list.column('#4', anchor=CENTER, stretch=NO, width=70)
         # set scrollbar for shopping list
-        scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.shoppingList.yview)
-        self.shoppingList.configure(yscrollcommand=scrollbar.set)
+        scrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, command=self.shopping_list.yview)
+        self.shopping_list.configure(yscrollcommand=scrollbar.set)
         scrollbar.place(x=481, y=10, height=400)
 
 
-    def manageStockWindow(self) -> None:
-        mngStockWin = tk.Toplevel()
-        mngStockWin.geometry('350x600+150+100')
-        mngStockWin.title('Stock Manager')
-        mngStockWin.iconbitmap('icon.ico')
+    def manage_stock_window(self) -> None:
+        mng_stock_win = tk.Toplevel()
+        mng_stock_win.geometry('350x600+150+100')
+        mng_stock_win.title('Stock Manager')
+        mng_stock_win.iconbitmap('icon.ico')
 
 
-        def addNewItem() -> None:
-            newItemWin = tk.Toplevel()
-            newItemWin.geometry('300x200+200+200')
-            newItemWin.title('New Item Menu')
-            newItemWin.iconbitmap('icon.ico')
+        def add_new_item() -> None:
+            new_item_win = tk.Toplevel()
+            new_item_win.geometry('300x200+200+200')
+            new_item_win.title('New Item Menu')
+            new_item_win.iconbitmap('icon.ico')
             
             # set labels
-            nameLabel = ttk.Label(newItemWin, text='Product:')
-            nameLabel.place(x=10, y=10)
-            priceLabel = ttk.Label(newItemWin, text='Price:')
-            priceLabel.place(x=10, y=30)
-            purchaseLabel = ttk.Label(newItemWin, text='Purchase Price:')
-            purchaseLabel.place(x=10, y=50)
-            quantityLabel = ttk.Label(newItemWin, text='Quantity:')
-            quantityLabel.place(x=10, y=70)
+            name_label = ttk.Label(new_item_win, text='Product:')
+            name_label.place(x=10, y=10)
+            price_label = ttk.Label(new_item_win, text='Price:')
+            price_label.place(x=10, y=30)
+            purchase_label = ttk.Label(new_item_win, text='Purchase Price:')
+            purchase_label.place(x=10, y=50)
+            quantity_label = ttk.Label(new_item_win, text='Quantity:')
+            quantity_label.place(x=10, y=70)
 
             # set entry points
-            tk.nameVar = StringVar(value='Product')
-            nameEntry = ttk.Entry(newItemWin, textvariable=tk.nameVar, justify='right')
-            nameEntry.place(x=150, y=10)
+            self.name_var = StringVar(value='Product')
+            name_entry = ttk.Entry(new_item_win, textvariable=self.name_var, justify='right')
+            name_entry.place(x=150, y=10)
             
-            tk.priceVar = DoubleVar(value=0.0)
-            priceEntry = ttk.Entry(newItemWin, textvariable=tk.priceVar, justify='right')
-            priceEntry.place(x=150, y=30)
+            self.price_var = DoubleVar(value=0.0)
+            price_entry = ttk.Entry(new_item_win, textvariable=self.price_var, justify='right')
+            price_entry.place(x=150, y=30)
 
-            tk.purchaseVar = DoubleVar(value=0.0)
-            purchaseEntry = ttk.Entry(newItemWin, textvariable=tk.purchaseVar, justify='right')
-            purchaseEntry.place(x=150, y=50)
+            self.purchase_var = DoubleVar(value=0.0)
+            purchase_entry = ttk.Entry(new_item_win, textvariable=self.purchase_var, justify='right')
+            purchase_entry.place(x=150, y=50)
 
-            tk.quantityVar = DoubleVar(value=0.0)
-            quantityEntry = ttk.Entry(newItemWin, textvariable=tk.quantityVar, justify='right')
-            quantityEntry.place(x=150, y=70)
+            self.quantity_var = DoubleVar(value=0.0)
+            quantity_entry = ttk.Entry(new_item_win, textvariable=self.quantity_var, justify='right')
+            quantity_entry.place(x=150, y=70)
 
 
             # window buttons
-            cancelButton = ttk.Button(newItemWin, text='CANCEL', command=newItemWin.destroy)
-            cancelButton.place(x=190, y=150, height=30)
-            addButton = ttk.Button(newItemWin, text='ADD ITEM', command=lambda: [StockDatabase.addNewStockItem(self._db, [tk.nameVar.get(), 
-                                                                                                                        tk.priceVar.get(), 
-                                                                                                                        tk.purchaseVar.get(), 
-                                                                                                                        tk.quantityVar.get()]), 
-                                                                                newItemWin.destroy(), 
-                                                                                mngStockWin.destroy(), 
-                                                                                self.manageStockWindow()])
-            addButton.place(x=30, y=150, height=30)
+            cancel_button = ttk.Button(new_item_win, text='CANCEL', command=new_item_win.destroy)
+            cancel_button.place(x=190, y=150, height=30)
+            add_button = ttk.Button(new_item_win, text='ADD ITEM', command=lambda: [StockDatabase.add_new_stock_item(self._db, [self.name_var.get(), 
+                                                                                                                        self.price_var.get(), 
+                                                                                                                        self.purchase_var.get(), 
+                                                                                                                        self.quantity_var.get()]), 
+                                                                                new_item_win.destroy(), 
+                                                                                mng_stock_win.destroy(), 
+                                                                                self.manage_stock_window()])
+            add_button.place(x=30, y=150, height=30)
             
 
-        cancelButton = ttk.Button(mngStockWin, text='CANCEL', command=mngStockWin.destroy)
-        cancelButton.place(x=250, y=550, height=30)
-        addButton = ttk.Button(mngStockWin, text='ADD', command=addNewItem)
-        addButton.place(x=10, y=550, height=30)
+        cancel_button = ttk.Button(mng_stock_win, text='CANCEL', command=mng_stock_win.destroy)
+        cancel_button.place(x=250, y=550, height=30)
+        add_button = ttk.Button(mng_stock_win, text='ADD', command=add_new_item)
+        add_button.place(x=10, y=550, height=30)
         
         
         # msw = Manage Stock Window
-        mswColumns = ('#1', '#2', '#3', '#4')
-        stockList = ttk.Treeview(mngStockWin, columns=mswColumns, show='headings', height=27, selectmode='browse')
-        stockList.place(x=10, y=10, width=315, height=500)
+        msw_columns = ('#1', '#2', '#3', '#4')
+        stock_list = ttk.Treeview(mng_stock_win, columns=msw_columns, show='headings', height=27, selectmode='browse')
+        stock_list.place(x=10, y=10, width=315, height=500)
 
-        stockList.heading('#1', text='Product')
-        stockList.heading('#2', text='Price')
-        stockList.heading('#3', text='Purchase Price')
-        stockList.heading('#4', text='Quantity')
+        stock_list.heading('#1', text='Product')
+        stock_list.heading('#2', text='Price')
+        stock_list.heading('#3', text='Purchase Price')
+        stock_list.heading('#4', text='Quantity')
 
-        stockList.column('#1', anchor=CENTER, stretch=NO, width=133)
-        stockList.column('#2', anchor=CENTER, stretch=NO, width=60)
-        stockList.column('#3', anchor=CENTER, stretch=NO, width=60)
-        stockList.column('#4', anchor=CENTER, stretch=NO, width=60)
+        stock_list.column('#1', anchor=CENTER, stretch=NO, width=133)
+        stock_list.column('#2', anchor=CENTER, stretch=NO, width=60)
+        stock_list.column('#3', anchor=CENTER, stretch=NO, width=60)
+        stock_list.column('#4', anchor=CENTER, stretch=NO, width=60)
 
-        scrollbar = ttk.Scrollbar(mngStockWin, orient=tk.VERTICAL, command=self.shoppingList.yview)
-        stockList.configure(yscrollcommand=scrollbar.set)
+        scrollbar = ttk.Scrollbar(mng_stock_win, orient=tk.VERTICAL, command=self.shopping_list.yview)
+        stock_list.configure(yscrollcommand=scrollbar.set)
         scrollbar.place(x=325, y=10, height=500)
 
         # insert data to stock list
-        for item in StockDatabase.loadData(self._db):
-            stockList.insert('', tk.END, values=item)
+        for item in StockDatabase.load_data(self._db):
+            stock_list.insert('', tk.END, values=item)
 
 
-        def deleteItem() -> None:
+        def delete_item() -> None:
             # get choosen item
-            currentItem = stockList.focus()
-            itemInfo = stockList.item(currentItem)
-            itemDetails = itemInfo["values"]
+            current_item = stock_list.focus()
+            item_info = stock_list.item(current_item)
+            item_details = item_info["values"]
             
             # excepting index error if someone would press delete when stock list is empty
             try:
                 # corrected for 'for' loop comparison. .focus() .item() returned all values as str
-                correctedType = (itemDetails[0], float(itemDetails[1]), float(itemDetails[2]), float(itemDetails[3]))
+                corrected_type: Any = (item_details[0], float(item_details[1]), float(item_details[2]), float(item_details[3]))
 
                 # delete item
-                newData: list[Any] = []
-                for item in StockDatabase.loadData(self._db):
-                    if item != correctedType:
-                        newData.append(item)
+                new_data: list[Any] = []
+                for item in StockDatabase.load_data(self._db):
+                    if item != corrected_type:
+                        new_data.append(item)
                 # database update procedure
-                StockDatabase.createNewStockFile(self._db)
+                StockDatabase.create_new_stock_file(self._db)
 
-                for item in newData:
-                    StockDatabase.addNewStockItem(self._db, item)
+                for item in new_data:
+                    StockDatabase.add_new_stock_item(self._db, item)
 
                 # refresh stock list
-                mngStockWin.destroy()
-                self.manageStockWindow()
+                mng_stock_win.destroy()
+                self.manage_stock_window()
             except IndexError:
                 pass
 
 
         # delete button
-        deleteButton = ttk.Button(mngStockWin, text='DELETE', command=deleteItem)
-        deleteButton.place(x=170, y=550, height=30)
+        delete_button = ttk.Button(mng_stock_win, text='DELETE', command=delete_item)
+        delete_button.place(x=170, y=550, height=30)
 
 
-        def amendItemDetails() -> None:
-            amendWin = tk.Toplevel()
-            amendWin.geometry('250x250+200+200')
-            amendWin.title('Change details')
-            amendWin.iconbitmap('icon.ico')
+        def amend_item_details() -> None:
+            amend_win = tk.Toplevel()
+            amend_win.geometry('250x250+200+200')
+            amend_win.title('Change details')
+            amend_win.iconbitmap('icon.ico')
 
-            questionLabel = ttk.Label(amendWin, text='What would you like to change?')
-            questionLabel.place(x=10, y=10)
+            question_label = ttk.Label(amend_win, text='What would you like to change?')
+            question_label.place(x=10, y=10)
 
-            itemOptions = ('Sale Price', 'Purchase Price', 'Stock Quantity')
+            item_options = ('Sale Price', 'Purchase Price', 'Stock Quantity')
             choice = StringVar()
-            options = ttk.OptionMenu(amendWin,
+            options = ttk.OptionMenu(amend_win,
                                     choice,
-                                    itemOptions[0],
-                                    *itemOptions)
+                                    item_options[0],
+                                    *item_options)
             options.place(x=10, y=47)
             options.config(width=15)
 
-            itemNewData = ttk.Label(amendWin, text='New Data:')
-            itemNewData.place(x=10, y=90)
+            item_new_data = ttk.Label(amend_win, text='New Data:')
+            item_new_data.place(x=10, y=90)
 
-            newDataEntry = ttk.Entry(amendWin, justify='right')
-            newDataEntry.place(x=10, y= 130)
+            new_data_entry = ttk.Entry(amend_win, justify='right')
+            new_data_entry.place(x=10, y= 130)
 
 
-            def acceptNewData(detailIndex: int, newDetail: Any) -> None:
+            def accept_new_data(detailIndex: int, newDetail: Any) -> None:
                 # get choosen item
-                currentItem = stockList.focus()
-                itemInfo = stockList.item(currentItem)
-                itemDetails = itemInfo["values"]
-                print(itemDetails)
+                current_item = stock_list.focus()
+                item_info = stock_list.item(current_item)
+                item_details = item_info["values"]
+                print(item_details)
                 # corrected for 'for' loop comparison. .focus() .item() returned all values as str
-                correctedType = (itemDetails[0], float(itemDetails[1]), float(itemDetails[2]), float(itemDetails[3]))
-                print(correctedType)
-                newData: list[Any] = []
-                for item in StockDatabase.loadData(self._db):
-                    if item != correctedType:
+                corrected_type = (item_details[0], float(item_details[1]), float(item_details[2]), float(item_details[3]))
+                print(corrected_type)
+                new_data: list[Any] = []
+                for item in StockDatabase.load_data(self._db):
+                    if item != corrected_type:
                         print(item)
-                        newData.append(item)
+                        new_data.append(item)
                 
                 # append changed item
-                itemDetails[detailIndex] = float(newDetail)
+                item_details[detailIndex] = float(newDetail)
                 # type adjustment as floats were turned into strings
-                itemDetails = (itemDetails[0], float(itemDetails[1]), float(itemDetails[2]), float(itemDetails[3]))
-                newData.append(itemDetails)
-                print(itemDetails)
-                print(correctedType)
-                StockDatabase.createNewStockFile(self._db)
+                item_details: Any = (item_details[0], float(item_details[1]), float(item_details[2]), float(item_details[3]))
+                new_data.append(item_details)
+                print(item_details)
+                print(corrected_type)
+                StockDatabase.create_new_stock_file(self._db)
                 # write to database
-                for item in newData:
-                    StockDatabase.addNewStockItem(self._db, item)
+                for item in new_data:
+                    StockDatabase.add_new_stock_item(self._db, item)
                 
                 # destroy window after changing details
-                amendWin.destroy()
+                amend_win.destroy()
                 # refresh stock list
-                mngStockWin.destroy()
-                self.manageStockWindow()
+                mng_stock_win.destroy()
+                self.manage_stock_window()
                 
 
-            okButton = ttk.Button(amendWin, text='UPDATE', command=lambda: acceptNewData(itemOptions.index(choice.get()) + 1, newDataEntry.get()))
+            okButton = ttk.Button(amend_win, text='UPDATE', command=lambda: accept_new_data(item_options.index(choice.get()) + 1, new_data_entry.get()))
             okButton.place(x=60, y=200)
 
-            cancelButton = ttk.Button(amendWin, text='CANCEL', command=amendWin.destroy)
-            cancelButton.place(x=150, y=200)
+            cancel_button = ttk.Button(amend_win, text='CANCEL', command=amend_win.destroy)
+            cancel_button.place(x=150, y=200)
 
 
-        amendButton = ttk.Button(mngStockWin, text='CHANGE', command=amendItemDetails)
-        amendButton.place(x=90, y=550, height=30)
+        amend_button = ttk.Button(mng_stock_win, text='CHANGE', command=amend_item_details)
+        amend_button.place(x=90, y=550, height=30)
     
 
-    def addToBasket(self) -> None:
-        basketWin = tk.Toplevel()
-        basketWin.geometry('250x200+200+200')
-        basketWin.title('Add Item to Basket')
-        basketWin.iconbitmap('icon.ico')
+    def add_to_basket(self) -> None:
+        basket_win = tk.Toplevel()
+        basket_win.geometry('250x200+200+200')
+        basket_win.title('Add Item to Basket')
+        basket_win.iconbitmap('icon.ico')
 
-        itemLabel = ttk.Label(basketWin, text='Item:')
-        itemLabel.place(x=10, y=10)
+        item_label = ttk.Label(basket_win, text='Item:')
+        item_label.place(x=10, y=10)
 
-        quantityLabel = ttk.Label(basketWin, text='Quantity:')
-        quantityLabel.place(x=10, y=70)
+        quantity_label = ttk.Label(basket_win, text='Quantity:')
+        quantity_label.place(x=10, y=70)
 
-        availableLAbel = ttk.Label(basketWin, text='Available:')
-        availableLAbel.place(x=10, y=110)
+        available_label = ttk.Label(basket_win, text='Available:')
+        available_label.place(x=10, y=110)
 
 
         # load options from available stock
-        def getOptions() -> list[str]:
+        def get_options() -> list[str]:
             choice: list[str] = []
-            for item in StockDatabase.loadData(self._db):
+            for item in StockDatabase.load_data(self._db):
                 choice.append(item[0])
             if len(choice) == 0:
                 choice = ['Nothing in stock']
             return choice
 
 
-        tk.choosenItem = StringVar()
-        options = ttk.OptionMenu(basketWin,
-                                tk.choosenItem,
-                                getOptions()[0],
-                                *getOptions())
+        self.choosen_item = StringVar()
+        options = ttk.OptionMenu(basket_win,
+                                self.choosen_item,
+                                get_options()[0],
+                                *get_options())
         options.place(x=120, y=10)
         options.config(width=15)
 
 
         # get maximum quantity of item from stock database
-        def getMaxQuantity(item: str) -> float:
-            for product in StockDatabase.loadData(self._db):
+        def get_max_quantity(item: str) -> float:
+            for product in StockDatabase.load_data(self._db):
                 if product[0] == item:
                     return float(product[3])
 
 
-        tk.quantityVar = DoubleVar(value=getMaxQuantity(tk.choosenItem.get()))
-        quantityAmountLabel = ttk.Label(basketWin, textvariable=tk.quantityVar, justify='right', background='lightgrey', anchor='e')
-        quantityAmountLabel.place(x=120, y=110, width=120)
+        self.quantity_var = DoubleVar(value=get_max_quantity(self.choosen_item.get()))
+        quantity_amount_label = ttk.Label(basket_win, textvariable=self.quantity_var, justify='right', background='lightgrey', anchor='e')
+        quantity_amount_label.place(x=120, y=110, width=120)
 
-        tk.entryVar = DoubleVar()
-        quantityEntry = ttk.Entry(basketWin, textvariable=tk.entryVar, justify='right')
-        quantityEntry.place(x=120, y=70, width=120)
+        self.entryVar = DoubleVar()
+        quantity_entry = ttk.Entry(basket_win, textvariable=self.entryVar, justify='right')
+        quantity_entry.place(x=120, y=70, width=120)
 
-        cancelButton = ttk.Button(basketWin, text='CANCEL', command=basketWin.destroy)
-        cancelButton.place(x=140, y=150)
+        cancel_button = ttk.Button(basket_win, text='CANCEL', command=basket_win.destroy)
+        cancel_button.place(x=140, y=150)
 
 
         # insert maximum available stock in Entry, update everytime different option from option menu is choosen
         # x, y, z just to pass argument to callback function, as required by tkinter. otherwise= error
-        def updateQuantity(x: Any, y: Any, z: Any) -> None:
-            tk.quantityVar = DoubleVar(value=getMaxQuantity(tk.choosenItem.get()))
-            quantityAmountLabel['textvariable'] = tk.quantityVar
+        def update_quantity(x: Any, y: Any, z: Any) -> None:
+            self.quantity_var = DoubleVar(value=get_max_quantity(self.choosen_item.get()))
+            quantity_amount_label['textvariable'] = self.quantity_var
 
 
-        tk.choosenItem.trace_add('write', updateQuantity)
+        self.choosen_item.trace_add('write', update_quantity)
 
         '''NEED TO WORK ON THIS PART
         EVERYTHING IS WORKING FINE, BUT WHILE ADDING SAME ITEM MULTIPLE TIMES
         WHEN IT COMES TO PAYMENT TIME stock_data.json IS NOT UPDATED CORRECTLY.
-        NEED TO FIND THE WAY TO CONSOLIDATE ITEMS IN THE shoppingList'''
+        NEED TO FIND THE WAY TO CONSOLIDATE ITEMS IN THE shopping_list'''
         # create item for the shopping list, calculate sum for product (quantity * price)
-        def addToShoppingList(item: str, quantity: float) -> None:
-            productToAdd: list[Any] = []
-            productToAdd.append(item)
+        def add_to_shopping_list(item: str, quantity: float) -> None:
+            product_to_add: list[Any] = []
+            product_to_add.append(item)
             # excepting TypeError if someone will try to add items when stock_data is empty
             try:
                 # ensure it can't be added more than in the stock
-                if quantity >= getMaxQuantity(tk.choosenItem.get()):
-                    productToAdd.append(getMaxQuantity(tk.choosenItem.get()))
+                if quantity >= get_max_quantity(self.choosen_item.get()):
+                    product_to_add.append(get_max_quantity(self.choosen_item.get()))
                 else:
-                    productToAdd.append(quantity)
-                for product in StockDatabase.loadData(self._db):
+                    product_to_add.append(quantity)
+                for product in StockDatabase.load_data(self._db):
                     if product[0] == item:
-                        productToAdd.append(product[1])
-                total = productToAdd[1] * productToAdd[2]
-                productToAdd.append(total)
+                        product_to_add.append(product[1])
+                total = product_to_add[1] * product_to_add[2]
+                product_to_add.append(total)
 
-                self.shoppingList.insert('', tk.END, values=productToAdd)
+                self.shopping_list.insert('', tk.END, values=product_to_add)
             except TypeError:
                 pass
 
 
-        addButton = ttk.Button(basketWin, text='ADD', command=lambda: addToShoppingList(tk.choosenItem.get(), tk.entryVar.get()))
-        addButton.place(x=30, y=150)
+        add_button = ttk.Button(basket_win, text='ADD', command=lambda: add_to_shopping_list(self.choosen_item.get(), self.entryVar.get()))
+        add_button.place(x=30, y=150)
 
 
-    def createLabels(self) -> None:
-        totalLabel = ttk.Label(self, text='TOTAL:')
-        totalLabel.place(x=150, y=420)
+    def create_labels(self) -> None:
+        total_label = ttk.Label(self, text='TOTAL:')
+        total_label.place(x=150, y=420)
 
-        taxLabel = ttk.Label(self, text='TAX:')
-        taxLabel.place(x=150, y=445)
+        tax_label = ttk.Label(self, text='TAX:')
+        tax_label.place(x=150, y=445)
 
-        toPayLabel = ttk.Label(self, text='TOTAL TO PAY:')
-        toPayLabel.place(x=150, y=470)
+        to_pay_label = ttk.Label(self, text='TOTAL TO PAY:')
+        to_pay_label.place(x=150, y=470)
 
 
-        def calculateTotal() -> float:
+        def calculate_total() -> float:
             total: float = 0.0
-            for child in self.shoppingList.get_children():
-                total += float(self.shoppingList.item(child, 'values')[3])
+            for child in self.shopping_list.get_children():
+                total += float(self.shopping_list.item(child, 'values')[3])
             return total
 
 
-        def getTaxValue() -> float:
-            for item in TillSettings.loadSettings(self._sett):
+        def get_tax_value() -> float:
+            for item in TillSettings.load_settings(self._sett):
                 for key, value in item.items():
                     if key == 'sales tax':
                         return value
             return 0.0
 
         # just a basic tax calculation for training purposes
-        def calculateTax(amount: float) -> float:
-            return round((amount / 100) * getTaxValue(), 2)
+        def calculate_tax(amount: float) -> float:
+            return round((amount / 100) * get_tax_value(), 2)
 
 
-        self.totalVar = DoubleVar(value=calculateTotal())
-        totalValue = ttk.Label(self, textvariable=self.totalVar, background='lightgrey', width=10, anchor='e')
-        totalValue.place(x=315, y=420, width=40)
+        self.total_var = DoubleVar(value=calculate_total())
+        total_value = ttk.Label(self, textvariable=self.total_var, background='lightgrey', width=10, anchor='e')
+        total_value.place(x=315, y=420, width=40)
 
-        self.taxVar = DoubleVar(value=calculateTax(self.totalVar.get()))
-        taxValue = ttk.Label(self, textvariable=self.taxVar, background='lightgrey', width=10, anchor='e')
-        taxValue.place(x=315, y=445)
+        self.tax_var = DoubleVar(value=calculate_tax(self.total_var.get()))
+        tax_value = ttk.Label(self, textvariable=self.tax_var, background='lightgrey', width=10, anchor='e')
+        tax_value.place(x=315, y=445)
 
-        self.toPayVar = DoubleVar(value=self.taxVar.get() + self.totalVar.get())
-        toPayValue = ttk.Label(self, textvariable=self.toPayVar, background='lightgrey', width=10, anchor='e')
-        toPayValue.place(x=315, y=470)
-
-
-        def updateTotals() -> None:
-            self.totalVar = DoubleVar(value=calculateTotal())
-            self.taxVar = DoubleVar(value=calculateTax(self.totalVar.get()))
-            self.toPayVar = DoubleVar(value=self.taxVar.get() + self.totalVar.get())
-            totalValue = ttk.Label(self, textvariable=self.totalVar, background='lightgrey', width=10, anchor='e')
-            totalValue.place(x=315, y=420)
-            taxValue = ttk.Label(self, textvariable=self.taxVar, background='lightgrey', width=10, anchor='e')
-            taxValue.place(x=315, y=445)
-            toPayValue = ttk.Label(self, textvariable=self.toPayVar, background='lightgrey', width=10, anchor='e')
-            toPayValue.place(x=315, y=470)
-            self.after(1000, updateTotals)
-        updateTotals()
+        self.to_pay_var = DoubleVar(value=self.tax_var.get() + self.total_var.get())
+        to_pay_value = ttk.Label(self, textvariable=self.to_pay_var, background='lightgrey', width=10, anchor='e')
+        to_pay_value.place(x=315, y=470)
 
 
-    def getPayment(self) -> None:
+        def update_totals() -> None:
+            self.total_var = DoubleVar(value=calculate_total())
+            self.tax_var = DoubleVar(value=calculate_tax(self.total_var.get()))
+            self.to_pay_var = DoubleVar(value=self.tax_var.get() + self.total_var.get())
+            total_value = ttk.Label(self, textvariable=self.total_var, background='lightgrey', width=10, anchor='e')
+            total_value.place(x=315, y=420)
+            tax_value = ttk.Label(self, textvariable=self.tax_var, background='lightgrey', width=10, anchor='e')
+            tax_value.place(x=315, y=445)
+            to_pay_value = ttk.Label(self, textvariable=self.to_pay_var, background='lightgrey', width=10, anchor='e')
+            to_pay_value.place(x=315, y=470)
+            self.after(1000, update_totals)
+        update_totals()
+
+
+    def get_payment(self) -> None:
         # update total payment
-        Payments.updateTotalPayments(self._pay, self.toPayVar.get())
+        Payments.update_total_payments(self._pay, self.to_pay_var.get())
 
         # update stock values
-        newData: list[Any] = []
-        updatedData: list[Any] = []
-        for item in StockDatabase.loadData(self._db):
+        new_data: list[Any] = []
+        updated_data: list[Any] = []
+        for item in StockDatabase.load_data(self._db):
             item = list(item)
-            for child in self.shoppingList.get_children():
-                if self.shoppingList.item(child, 'values')[0] == item[0]:
-                    item[3] -= float(self.shoppingList.item(child, 'values')[1])
-                    updatedData.append(list(item))                  
+            for child in self.shopping_list.get_children():
+                if self.shopping_list.item(child, 'values')[0] == item[0]:
+                    item[3] -= float(self.shopping_list.item(child, 'values')[1])
+                    updated_data.append(list(item))                  
         
         # get names of bought products
-        compareList: list[str] = []
-        for item in updatedData:
-            compareList.append(item[0])
-        print(compareList)
-        print(updatedData)
+        compare_list: list[str] = []
+        for item in updated_data:
+            compare_list.append(item[0])
+        print(compare_list)
+        print(updated_data)
         # append new data with not bought products
-        for item in StockDatabase.loadData(self._db):
-            if item[0] not in compareList:
-                newData.append(list(item))
+        for item in StockDatabase.load_data(self._db):
+            if item[0] not in compare_list:
+                new_data.append(list(item))
         # append new data with bought products with new values
-        for item in updatedData:
-            newData.append(item)
-        print(newData)
+        for item in updated_data:
+            new_data.append(item)
+        print(new_data)
         # write to file procedure
-        StockDatabase.createNewStockFile(self._db)
+        StockDatabase.create_new_stock_file(self._db)
 
-        for item in newData:
-            StockDatabase.addNewStockItem(self._db, item)
+        for item in new_data:
+            StockDatabase.add_new_stock_item(self._db, item)
 
         # clear shopping list after successful purchase
-        self.shoppingList.delete(*self.shoppingList.get_children())
+        self.shopping_list.delete(*self.shopping_list.get_children())
         
 
-    def removeFromBasket(self) -> None:
+    def remove_from_basket(self) -> None:
         # except IndexError for deleting when list is empty
         try:
-            selectedItem = self.shoppingList.selection()[0]
-            self.shoppingList.delete(selectedItem)
+            selected_item = self.shopping_list.selection()[0]
+            self.shopping_list.delete(selected_item)
         except IndexError:
             pass
 
 
 class StockDatabase:
     def __init__(self, dataFile: str) -> None:
-        self._stockFile = dataFile
+        self._stock_file = dataFile
 
         # check for stock data file existence
-        if os.path.isfile(self._stockFile) == True and os.stat(self._stockFile).st_size != 0:
+        if os.path.isfile(self._stock_file) == True and os.stat(self._stock_file).st_size != 0:
             pass
         else:
-            self.createNewStockFile()
+            self.create_new_stock_file()
 
 
-    def createNewStockFile(self) -> None:
-        with open(self._stockFile, 'w') as f:
-            writeData: dict[str, list[Any]] = {"stock": []}
-            json.dump(writeData, f, indent=4)
+    def create_new_stock_file(self) -> None:
+        with open(self._stock_file, 'w') as f:
+            write_data: dict[str, list[Any]] = {"stock": []}
+            json.dump(write_data, f, indent=4)
 
     
-    def addNewStockItem(self, newItem: list[Any]):
+    def add_new_stock_item(self, newItem: list[Any]):
         item = {
                 "item": newItem[0],
                 "sale price": newItem[1],
                 "purchase price": newItem[2],
                 "stock quantity": newItem[3]
         }
-        with open(self._stockFile, 'r') as f:
+        with open(self._stock_file, 'r') as f:
             data = json.load(f)
             data["stock"].append(item)
-        with open(self._stockFile, 'w') as f:
+        with open(self._stock_file, 'w') as f:
             json.dump(data, f, indent=4)
 
 
-    def loadData(self) -> list[Any]:
-        stockItem = []
-        with open(self._stockFile, 'r') as f:
+    def load_data(self) -> list[Any]:
+        stock_item: list[Any] = []
+        with open(self._stock_file, 'r') as f:
             data = json.load(f)
-            for itemData in data["stock"]:
-                item: str =  itemData["item"]
-                salePrice: float = itemData["sale price"]
-                purchasePrice: float = itemData["purchase price"]
-                stockQuantity: float = itemData["stock quantity"]
+            for item_data in data["stock"]:
+                item: str =  item_data["item"]
+                sale_price: float = item_data["sale price"]
+                purchase_price: float = item_data["purchase price"]
+                stock_quantity: float = item_data["stock quantity"]
 
-                stockItem.append((item, salePrice, purchasePrice, stockQuantity))
-        return stockItem
+                stock_item.append((item, sale_price, purchase_price, stock_quantity))
+        return stock_item
 
 
 
 class TillSettings:
     def __init__(self, dataFile: str) -> None:
-        self._settFile = dataFile
+        self._sett_file = dataFile
 
         # check for settings file existence
-        if os.path.isfile(self._settFile) == True and os.stat(self._settFile).st_size != 0:
+        if os.path.isfile(self._sett_file) == True and os.stat(self._sett_file).st_size != 0:
             pass
         else:
-            self.createNewSettingsFile()
+            self.create_new_sett_file()
 
 
-    def createNewSettingsFile(self) -> None:
-        with open(self._settFile, 'w') as f:
-            writeData = {"settings" : [{
+    def create_new_sett_file(self) -> None:
+        with open(self._sett_file, 'w') as f:
+            write_data = {"settings" : [{
                             "sales tax": 0
                             }]
                         }
-            json.dump(writeData, f, indent=4)
+            json.dump(write_data, f, indent=4)
 
     
-    def loadSettings(self) -> list[Any]:
+    def load_settings(self) -> list[Any]:
         settings: list[Any] = []
-        with open(self._settFile, 'r') as f:
+        with open(self._sett_file, 'r') as f:
             data = json.load(f)
             for item in data["settings"]:
                 settings.append(item)
@@ -522,35 +522,35 @@ class TillSettings:
 
 class Payments:
     def __init__(self, paymentFile: str) -> None:
-        self._paymentFile = paymentFile
+        self._payment_file = paymentFile
 
         # check for file existence
-        if os.path.isfile(self._paymentFile) == True and os.stat(self._paymentFile).st_size != 0:
+        if os.path.isfile(self._payment_file) == True and os.stat(self._payment_file).st_size != 0:
             pass
         else:
-            self.createNewPaymentFile()
+            self.create_new_pay_file()
 
         
-    def createNewPaymentFile(self) -> None:
-        with open(self._paymentFile, 'w') as f:
-            writeData = {"Total Payments": 0}
-            json.dump(writeData, f, indent=4)
+    def create_new_pay_file(self) -> None:
+        with open(self._payment_file, 'w') as f:
+            write_data = {"Total Payments": 0}
+            json.dump(write_data, f, indent=4)
 
     
-    def updateTotalPayments(self, payment: float):
-        with open(self._paymentFile, 'r') as f:
+    def update_total_payments(self, payment: float):
+        with open(self._payment_file, 'r') as f:
             data = json.load(f)
             data["Total Payments"] += payment
-        with open(self._paymentFile, 'w') as f:
+        with open(self._payment_file, 'w') as f:
             json.dump(data, f, indent=4)
 
 
 
 if __name__ == '__main__':
-    _stockFIle = f'{os.path.dirname(__file__)}\\stock_data.json'
-    _settFile = f'{os.path.dirname(__file__)}\\settings.json'
-    _paymentFile = f'{os.path.dirname(__file__)}\\payments.json'
-    db = StockDatabase(_stockFIle)
-    sett = TillSettings(_settFile)
-    pay = Payments(_paymentFile)
+    _stock_file = f'{os.path.dirname(__file__)}\\stock_data.json'
+    _sett_file = f'{os.path.dirname(__file__)}\\settings.json'
+    _payment_file = f'{os.path.dirname(__file__)}\\payments.json'
+    db = StockDatabase(_stock_file)
+    sett = TillSettings(_sett_file)
+    pay = Payments(_payment_file)
     Application(database= db, settings= sett, payments= pay).mainloop()
