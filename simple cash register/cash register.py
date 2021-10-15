@@ -301,7 +301,7 @@ class Application(tk.Tk):
         cancel_button.place(x=140, y=150)
 
 
-        # insert maximum available stock in Entry, update everytime different option from option menu is choosen
+        # insert maximum available stock in quantity_amount_label, update everytime different option from option menu is choosen
         # x, y, z just to pass argument to callback function, as required by tkinter. otherwise= error
         def update_quantity(x: Any, y: Any, z: Any) -> None:
             self.quantity_var = DoubleVar(value=get_max_quantity(self.choosen_item.get()))
