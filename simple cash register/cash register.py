@@ -12,8 +12,7 @@ class Application(tk.Tk):
         self._sett = settings
         self._pay = payments
         
-        self.geometry('500x500')
-        self.geometry('+100+100')
+        self.geometry('500x500+100+100')
         self.title('Cash Register')
         self.iconbitmap('icon.ico')
         
@@ -62,15 +61,14 @@ class Application(tk.Tk):
 
     def manageStockWindow(self) -> None:
         mngStockWin = tk.Toplevel()
-        mngStockWin.geometry('350x600')
-        mngStockWin.geometry('+150+100')
+        mngStockWin.geometry('350x600+150+100')
         mngStockWin.title('Stock Manager')
         mngStockWin.iconbitmap('icon.ico')
 
+
         def addNewItem() -> None:
             newItemWin = tk.Toplevel()
-            newItemWin.geometry('300x200')
-            newItemWin.geometry('+200+200')
+            newItemWin.geometry('300x200+200+200')
             newItemWin.title('New Item Menu')
             newItemWin.iconbitmap('icon.ico')
             
@@ -161,7 +159,7 @@ class Application(tk.Tk):
                 for item in StockDatabase.loadData(self._db):
                     if item != correctedType:
                         newData.append(item)
-
+                # database update procedure
                 StockDatabase.createNewStockFile(self._db)
 
                 for item in newData:
@@ -181,8 +179,7 @@ class Application(tk.Tk):
 
         def amendItemDetails() -> None:
             amendWin = tk.Toplevel()
-            amendWin.geometry('250x250')
-            amendWin.geometry('+200+200')
+            amendWin.geometry('250x250+200+200')
             amendWin.title('Change details')
             amendWin.iconbitmap('icon.ico')
 
@@ -252,8 +249,7 @@ class Application(tk.Tk):
 
     def addToBasket(self) -> None:
         basketWin = tk.Toplevel()
-        basketWin.geometry('250x200')
-        basketWin.geometry('+200+200')
+        basketWin.geometry('250x200+200+200')
         basketWin.title('Add Item to Basket')
         basketWin.iconbitmap('icon.ico')
 
