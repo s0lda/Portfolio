@@ -22,7 +22,6 @@ class App(tk.Tk):
         self.create_entry()
 
 
-
     def create_buttons(self) -> None:
         add_button = ttk.Button(self, text='Add', command=self.add_button_f)
         add_button.place(x=10, y=140, height=50, width=70)
