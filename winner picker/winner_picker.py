@@ -20,11 +20,13 @@ class App(tk.Tk):
         self.create_labels()
         self.create_list_of_cont()
         self.create_entry()
+        
 
 
     def create_buttons(self) -> None:
-        add_button = ttk.Button(self, text='Add', command=self.add_button_f)
-        add_button.place(x=10, y=140, height=50, width=70)
+        self.add_button = ttk.Button(self, text='Add', command=self.add_button_f)
+        self.add_button.place(x=10, y=140, height=50, width=70)
+        self.add_button.invoke()
 
         pick_button = ttk.Button(self, text='Pick', command=self.pick_button_f)
         pick_button.place(x=90, y=140, height=50, width=70)
@@ -60,12 +62,15 @@ class App(tk.Tk):
     def create_entry(self) -> None:
         self.entry_point = ttk.Entry(self, textvariable=self.entry_var, font=('Arial', 12), justify='center')
         self.entry_point.place(x=10, y=40, height=40, width=230)
+        self.entry_point.bind('<Return>', lambda event=None: self.add_button.invoke())
+        
         
 
     def add_button_f(self) -> None:
-        self.contestant_list.append(self.entry_var.get())
-        self.cont_view.insert('', tk.END, values=''.join(list((self.entry_var.get()))))
-        self.entry_point.delete(0, END)
+        if len(self.entry_var.get()) > 0:
+            self.contestant_list.append(self.entry_var.get())
+            self.cont_view.insert('', tk.END, values=''.join(list((self.entry_var.get()))))
+            self.entry_point.delete(0, END)
 
     
     def reset_button_f(self) -> None:
