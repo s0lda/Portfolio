@@ -3,7 +3,6 @@ import tkinter as tk
 import random
 from tkinter import Frame, PhotoImage, Radiobutton, StringVar, ttk
 from typing import Any
-from math import ceil
 
 
 class Game(tk.Tk):
@@ -184,13 +183,13 @@ class WinnerFrame(tk.Frame):
         tk.Frame.__init__(self, master)
         main_font = ('Arial', 12, 'bold')
         
-        def winner_looser():
+        def winner_loser():
             if master.winner == 'computer':
                 return 'red'
             else:
                 return 'green'
 
-        self.configure(background=winner_looser())
+        self.configure(background=winner_loser())
         main_label = ttk.Label(self, text='Do you want to play again?', anchor='center', background='#eee', font=main_font)
         main_label.place(x=10, y=120, width=380, height=30)
 
