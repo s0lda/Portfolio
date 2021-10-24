@@ -14,7 +14,7 @@ music_ext = ('.mp3', '.wma', '.mid', '.m4a', '.ogg', '.flac', '.wav', '.amr')
 videos_ext = ('.avi', '.mp4', '.m4v', '.mkv', '.mov', '.wmv', '.mpg', '.flv')
 documents_ext = ('.pdf', '.doc', '.docx', '.docm', '.dot', '.dotm', '.dotx', '.html', '.txt', '.xps', 
 '.csv', '.xls', '.xlsb', '.xlsm', '.xltx', '.xps', '.xml')
-pictures_ext = ('.jpg', '.jpg', '.gif', '.png','.jpx', '.gif', '.bmp', '.ico')
+pictures_ext = ('.jpg', '.jpg', '.gif', '.png','.jpx', '.bmp', '.ico')
 
 
 # files to move
