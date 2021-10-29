@@ -76,7 +76,7 @@ class Translator:
                     languages.append(language)
         return languages
 
-    # get code for language from languages in database: wrong input impossible
+    # get code for language from languages in database: wrong input impossible as list is loaded form db
     def get_lang_code(self, language: str) -> Union[None, str]:
         with open(self._lang_db, 'r') as f:
             lang_data = json.load(f)
