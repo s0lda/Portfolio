@@ -15,7 +15,7 @@ class App(tk.Tk):
         self.configure(background='#333333')
         self.style = ttk.Style()
         self.style.configure('TCheckbutton', background='#333333', foreground='white')
-        self.style.configure('TButton', font=('Tahoma', 10, 'bold'))
+        self.style.configure('TButton', font=('Tahoma', 10, 'bold'), background='#333333')
 
         self.link_var = StringVar()
         self.mp3_var = BooleanVar()
