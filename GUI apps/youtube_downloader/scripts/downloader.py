@@ -21,7 +21,7 @@ class Downloader:
             except AttributeError:
                 video.streams.filter(progressive=True).first().download(filename=name, output_path=downloads_path)
 
-        # if video already downloaded remove copy
+        # if video/mp3 already downloaded remove copy
         try:
             os.rename(f'{downloads_path}\\{name}', f'{downloads_path}\\{new_name}')
         except FileExistsError:
