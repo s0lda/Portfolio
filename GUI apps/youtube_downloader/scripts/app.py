@@ -33,8 +33,8 @@ class App(tk.Tk):
         mp3_check = ttk.Checkbutton(self, variable=self.mp3_var, text='MP3', onvalue=True, offvalue=False, style='TCheckbutton')
         mp3_check.place(x=150, y=75)
         download_button = ttk.Button(self, text='DOWNLOAD', style='TButton', command=lambda: [self._eng.download(self.mp3_var.get(), self.link_var.get()),
-                                                                                                self.file_name.set(self._eng.download(self.mp3_var.get(), self.link_var.get())[0]),
-                                                                                                self.file_path.set((self._eng.download(self.mp3_var.get(), self.link_var.get())[1]))])
+                                                                                              self.file_name.set(self._eng.download(self.mp3_var.get(), self.link_var.get())[0]),
+                                                                                              self.file_path.set((self._eng.download(self.mp3_var.get(), self.link_var.get())[1]))])
         download_button.place(x=250, y=110, width=200, height=40)
         file_info_label = label(text='File:')
         file_info_label.place(x=10, y=200, height=30)
