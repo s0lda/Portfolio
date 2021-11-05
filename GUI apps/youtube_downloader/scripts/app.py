@@ -44,8 +44,7 @@ class App(tk.Tk):
         path_info_label.place(x=10, y=240, height=30)
         path_info_label_var = label(textvariable=self.file_path)
         path_info_label_var.place(x=120, y=240, height=30)
-
+        
         self.file_path.trace_add('write', self.empty_entry_field)
-
     def empty_entry_field(self, x: Any, y: Any, z: Any) -> None:
         self.link_var.set('')
