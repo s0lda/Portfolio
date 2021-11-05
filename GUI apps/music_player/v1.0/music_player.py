@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import os
-from ttkbootstrap import Style
+# from ttkbootstrap import Style
 import pygame
 from tkinter.filedialog import askdirectory
 
@@ -12,10 +12,10 @@ class Music_Player(tk.Tk):
 
         self.geometry('400x280')
         self.title('Music Player')
-        self.iconbitmap('icon.ico')
+        # self.iconbitmap('icon.ico')
 
-        style = Style(theme= 'darkly')
-        self = style.master
+        # style = Style(theme= 'darkly')
+        # self = style.master
 
         self.playing_state = False
         self.pause_state = False
