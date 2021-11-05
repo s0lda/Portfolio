@@ -9,7 +9,7 @@ class Downloader:
         downloads_path = str(Path.home() / 'Downloads')
         video = YouTube(url)
         name = video.title
-        # / and \ need to be removed from the name. otherwise tkinter calls OSError
+        # / and \ need to be removed from the name. otherwise tkinter calls OSError as it's taking it as part of path
         name = name.replace('\\', '').replace('/', '')
         if MP3BoolVal:
             new_name = f'{name}.mp3'
