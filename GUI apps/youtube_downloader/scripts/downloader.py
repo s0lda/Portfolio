@@ -1,12 +1,12 @@
 from pytube import YouTube
-from pathlib import Path
 
 class Downloader:
-    def __init__(self) -> None:
+    def __init__(self, download_path: str) -> None:
         super().__init__()
+        self._d_path = download_path
 
     def download(self, audio_only: bool, url: str) -> tuple[str, str]:
-        downloads_path = str(Path.home() / 'Downloads')
+        
         try:    
             video = YouTube(url)
             name = video.title
@@ -16,13 +16,13 @@ class Downloader:
             if audio_only:
                 new_name = f'{name}.mp3'
                 print(video.streams.get_audio_only())
-                video.streams.get_audio_only().download(filename=new_name, output_path=downloads_path)
+                video.streams.get_audio_only().download(filename=new_name, output_path=self._d_path)
             else:
                 new_name = f'{name}.mp4'
                 print(video.streams.get_highest_resolution())
-                video.streams.get_highest_resolution().download(filename=new_name, output_path=downloads_path)
+                video.streams.get_highest_resolution().download(filename=new_name, output_path=self._d_path)
         except:
             new_name = 'URL IS NOT CORRECT'
-            downloads_path = ''
+            self._d_path = ''
 
-        return new_name, downloads_path
+        return new_name, self._d_path
