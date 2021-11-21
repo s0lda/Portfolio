@@ -39,6 +39,9 @@ class App(tk.Tk):
         open_dir.place(relheight=0.05, relwidth=0.05, relx=0.85, rely=0.92)
 
     def _get_screen_size(self) -> tuple[float, float]:
+        '''Check for screen size and return tuple[float, float].
+        >>> return screen_width, screen_height'''
+
         root = tk.Tk()
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
