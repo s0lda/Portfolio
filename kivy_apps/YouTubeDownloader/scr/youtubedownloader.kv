@@ -1,0 +1,71 @@
+<YTD>
+    canvas.before:
+        Color:
+            rgba: 103/255.0, 105/255.0, 111/255.0, 0.3
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        text:'URL:'
+        font_size: 14
+        size_hint: .2, .07
+        pos_hint: {'x':.009, 'y':.9}
+        halign: 'left'
+        bold: True
+        text_size: self.size
+    TextInput:
+        id: url_input
+        font_size: 14
+        size_hint: .982, .07
+        pos_hint: {'x':.009, 'y':.8}
+        halign: 'left'
+    Label:
+        text:'Download as:'
+        font_size: 14
+        size_hint: .982, .07
+        pos_hint: {'x':.009, 'y':.7}
+        halign: 'left'
+        text_size: self.size
+    CheckBox:
+        id: is_mp3
+        size_hint: .05, .07
+        pos_hint: {'x':.08, 'y':.59}
+    Label:
+        text:'MP3'
+        font_size: 14
+        size_hint: .6, .07
+        pos_hint: {'x':.13, 'y':.6}
+        halign: 'left'
+        text_size: self.size
+    CheckBox:
+        id: is_mp4
+        size_hint: .05, .07
+        pos_hint: {'x':.08, 'y':.49}
+    Label:
+        text:'VIDEO'
+        font_size: 14
+        size_hint: .6, .07
+        pos_hint: {'x':.13, 'y':.5}
+        halign: 'left'
+        text_size: self.size
+    Button:
+        text: 'Download'
+        size_hint: .4, .1
+        pos_hint: {'x':.3, 'y':.36}
+        background_normal: ''
+        background_color: 22/255.0, 65/255.0, 232/255.0, .9
+        on_release: self.parent.download(is_mp3.active, is_mp4.active, url_input.text)
+    Label:
+        id: msg_lbl
+        font_size: 14
+        size_hint: .982, .07
+        pos_hint: {'x':.009, 'y':.25}
+        halign: 'center'
+        text_size: self.size
+    Label:
+        text: self.parent._d_path
+        font_size: 14
+        size_hint: .982, .07
+        pos_hint: {'x':.009, 'y':.15}
+        halign: 'center'
+        text_size: self.size     
