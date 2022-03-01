@@ -12,8 +12,6 @@ class NewsReader():
             date_now = datetime.now()
             today = datetime.strftime(date_now, '%Y-%m-%d')
             search = f'everything?q={search}&from={today}&sortBy=popularity&'
-            print(search)
-            print(today)
         else:
             search = f'top-headlines?country={self.location}&'
         response = urlopen(f'https://newsapi.org/v2/{search}'
@@ -23,8 +21,6 @@ class NewsReader():
         news: list[list[str]] = []
         for article in data['articles']:
             news.append([article['title'], article['url']])
-        for item in news:
-            print(item)
         return news
 
     def get_location(self) -> str:
