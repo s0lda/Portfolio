@@ -1,0 +1,189 @@
+<Checker>
+    canvas.before:
+        Color:
+            rgba: 103/255.0, 105/255.0, 111/255.0, 0.3
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        text: 'User:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.95}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: user_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.95}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Machine:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.45, 'y': 0.95}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: machine_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.60, 'y': 0.95}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text:'OS:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.90}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: os_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.90}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Version:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.45, 'y': 0.90}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: os_ver_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.60, 'y': 0.90}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'CPU:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.80}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Name:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.75}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: cpu_lbl
+        font_size: 14
+        size_hint: (0.8, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.75}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Speed:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.70}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: cpu_freq_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.70}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Cores:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.45, 'y': 0.70}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: cpu_cores_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.60, 'y': 0.70}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'RAM:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.60}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: ram_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.60}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'GPU:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.50}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Name:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.45}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: gpu_lbl
+        font_size: 14
+        size_hint: (0.8, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.45}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Memory:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.40}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: gpu_mem_lbl
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.20, 'y': 0.40}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'Driver:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.35}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: gpu_driver_lbl
+        font_size: 14
+        size_hint: (0.8, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.35}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        text: 'UUID:'
+        font_size: 14
+        size_hint: (0.2, 0.07)
+        pos_hint: {'x': 0.05, 'y': 0.30}
+        halign: 'left'
+        text_size: self.size
+    Label:
+        id: gpu_uuid_lbl
+        font_size: 14
+        size_hint: (0.8, 0.07)
+        pos_hint: {'x': 0.15, 'y': 0.30}
+        halign: 'left'
+        text_size: self.size
