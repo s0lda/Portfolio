@@ -34,7 +34,7 @@ class Checker(RelativeLayout):
         self.ids.gpu_driver_lbl.text = f'{self.gpu.driver}'
         
 class SpecCheck(App):
-    def build(self) -> RelativeLayout | None:
+    def build(self) -> RelativeLayout:
         screen_size: tuple[int, int] | None = get_screen_size(appsize=False)
         if screen_size != None:
             Window.size = (450, 550)
