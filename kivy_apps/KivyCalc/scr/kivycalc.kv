@@ -1,0 +1,187 @@
+<Calculator>
+    Label:
+        id: screen
+        size_hint: .96, .15
+        pos_hint: {'x': .02, 'y': .83}
+        halign: 'right'
+        valign: 'middle'
+        font_size: 30
+        bold: True
+        color: (0, 0, 0, 1)
+        text_size: self.size
+        canvas.before:
+            Color:
+                rgba: 250/255, 250/255, 250/255, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+    Button:
+        id: btn_0
+        text: '0'
+        size_hint: .468, .15
+        pos_hint: {'x': .02, 'y': .05}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_0.text)
+    Button:
+        id: btn_dot
+        text: '.'
+        size_hint: .23, .15
+        pos_hint: {'x': .495, 'y': .05}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_dot.text)
+    Button:
+        id: button_equal
+        text: '='
+        size_hint: .23, .31
+        pos_hint: {'x': .74, 'y': .05}
+        color: (1, 1, 1, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (38/255, 38/255, 38/255, 1)
+        on_press: root.on_click(button_equal.text)
+    Button:
+        id: btn_plus
+        text: '+'
+        size_hint: .23, .15
+        pos_hint: {'x': .74, 'y': .37}
+        color: (1, 1, 1, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (38/255, 38/255, 38/255, 1)
+        on_press: root.on_click(btn_plus.text)
+    Button:
+        id: btn_minus
+        text: '-'
+        size_hint: .23, .15
+        pos_hint: {'x': .74, 'y': .53}
+        color: (1, 1, 1, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (38/255, 38/255, 38/255, 1)
+        on_press: root.on_click(btn_minus.text)
+    Button:
+        id: btn_clear
+        text: 'C'
+        size_hint: .23, .125
+        pos_hint: {'x': .74, 'y': .69}
+        color: (1, 1, 1, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (38/255, 38/255, 38/255, 1)
+        on_press: root.on_click(btn_clear.text)
+    Button:
+        id: btn_multiply
+        text: '*'
+        size_hint: .23, .125
+        pos_hint: {'x': .495, 'y': .69}
+        color: (1, 1, 1, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (38/255, 38/255, 38/255, 1)
+        on_press: root.on_click(btn_multiply.text)
+    Button:
+        id: btn_divide
+        text: '/'
+        size_hint: .23, .125
+        pos_hint: {'x': .257, 'y': .69}
+        color: (1, 1, 1, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (38/255, 38/255, 38/255, 1)
+        on_press: root.on_click(btn_divide.text)
+    Button:
+        id: btn_1
+        text: '1'
+        size_hint: .23, .15
+        pos_hint: {'x': .02, 'y': .21}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_1.text)
+    Button:
+        id: btn_2
+        text: '2'
+        size_hint: .23, .15
+        pos_hint: {'x': .257, 'y': .21}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_2.text)
+    Button:
+        id: btn_3
+        text: '3'
+        size_hint: .23, .15
+        pos_hint: {'x': .495, 'y': .21}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_3.text)
+    Button:
+        id: btn_4
+        text: '4'
+        size_hint: .23, .15
+        pos_hint: {'x': .02, 'y': .37}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_4.text)
+    Button:
+        id: btn_5
+        text: '5'
+        size_hint: .23, .15
+        pos_hint: {'x': .257, 'y': .37}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_5.text)
+    Button:
+        id: btn_6
+        text: '6'
+        size_hint: .23, .15
+        pos_hint: {'x': .495, 'y': .37}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_6.text)
+    Button:
+        id: btn_7
+        text: '7'
+        size_hint: .23, .15
+        pos_hint: {'x': .02, 'y': .53}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_7.text)
+    Button:
+        id: btn_8
+        text: '8'
+        size_hint: .23, .15
+        pos_hint: {'x': .257, 'y': .53}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_8.text)
+    Button:
+        id: btn_9
+        text: '9'
+        size_hint: .23, .15
+        pos_hint: {'x': .495, 'y': .53}
+        color: (0, 0, 0, 1)
+        font_size: 20
+        background_normal: ''
+        background_color: (250/255, 250/255, 250/255, 1)
+        on_press: root.on_click(btn_9.text)
