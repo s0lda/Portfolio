@@ -7,9 +7,8 @@ class Calculator(RelativeLayout):
     memory: str = ''
     operation: str = ''
     
-    def on_key_down(self, *args) -> None:
-        print(args)
-        calc_symbols = ['+', '-', '*', '/', '=', '.', 'C', 'c'
+    def on_key_down(self, *args: tuple[object, int, int, str, list[str]]) -> None:
+        calc_buttons = ['+', '-', '*', '/', '=', '.', 'C', 'c'
                         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         # Needed to get the keyboard input as kivy
         # doesn't have a way to get the num pad key pressed
@@ -51,7 +50,7 @@ class Calculator(RelativeLayout):
             case 265:
                 self.on_click('9')
 
-        for symbol in calc_symbols:
+        for symbol in calc_buttons:
             if args[3] == symbol:
                 self.on_click(symbol)
 
