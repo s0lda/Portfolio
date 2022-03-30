@@ -7,7 +7,7 @@ class Calculator(RelativeLayout):
     memory: str = ''
     operation: str = ''
     
-    def on_key_down(self, *args: tuple[object, int, int, str, list[str]]) -> None:
+    def on_key_down(self, *args: tuple[object, int, int, str | None, list[str]]) -> None:
         calc_buttons = ['+', '-', '*', '/', '=', '.', 'C', 'c'
                         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         # Needed to get the keyboard input as kivy
@@ -59,18 +59,26 @@ class Calculator(RelativeLayout):
         if input == 'C':
             self.ids.screen.text = '0'
         elif input == '+':
+            if self.operation == '+':
+                self.on_click('=')
             self.operation = '+'
             self.memory = self.ids.screen.text
             self.ids.screen.text = '0'
         elif input == '-':
+            if self.operation == '-':
+                self.on_click('=')
             self.operation = '-'
             self.memory = self.ids.screen.text
             self.ids.screen.text = '0'
         elif input == '*':
+            if self.operation == '*':
+                self.on_click('=')
             self.operation = '*'
             self.memory = self.ids.screen.text
             self.ids.screen.text = '0'
         elif input == '/':
+            if self.operation == '/':
+                self.on_click('=')
             self.operation = '/'
             self.memory = self.ids.screen.text
             self.ids.screen.text = '0'
