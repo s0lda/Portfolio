@@ -1,0 +1,83 @@
+<ADC>
+    Label:
+        text:'Departure:'
+        font_size: 16
+        size_hint: .4, .05
+        pos_hint: {'x':.05, 'y':.93}
+        halign: 'left'
+        text_size: self.size
+        bold: True
+    TextInput:
+        id: departure
+        font_size: 14
+        size_hint: .5, .05
+        pos_hint: {'x':.45, 'y':.93}
+        multiline: False
+        text: ''
+        halign: 'right'
+        text_size: self.size
+        on_text: root.fill_data()
+    Label:
+        text:'Arrival:'
+        font_size: 16
+        size_hint: .4, .05
+        pos_hint: {'x':.05, 'y':.85}
+        halign: 'left'
+        text_size: self.size
+        bold: True
+    TextInput:
+        id: arrival
+        font_size: 14
+        size_hint: .5, .05
+        pos_hint: {'x':.45, 'y':.85}
+        multiline: False
+        text: ''
+        halign: 'right'
+        text_size: self.size
+        on_text: root.fill_data()
+    Label:
+        text:'From:'
+        font_size: 15
+        size_hint: .4, .05
+        pos_hint: {'x':.05, 'y':.77}
+        halign: 'left'
+        text_size: self.size
+        bold: True
+    Label:
+        id: from_label
+        text:'Choose the airport'
+        font_size: 14
+        size_hint: .9, .05
+        pos_hint: {'x':.05, 'y':.72}
+        halign: 'center'
+        text_size: self.size
+    Label:
+        text:'To:'
+        font_size: 15
+        size_hint: .4, .05
+        pos_hint: {'x':.05, 'y':.67}
+        halign: 'left'
+        text_size: self.size
+        bold: True
+    Label:
+        id: to_label
+        text:'Choose the airport'
+        font_size: 14
+        size_hint: .9, .05
+        pos_hint: {'x':.05, 'y':.62}
+        halign: 'center'
+        text_size: self.size
+    Label:
+        id: distance
+        font_size: 15
+        size_hint: .9, .05
+        pos_hint: {'x':.05, 'y':.52}
+        halign: 'center'
+        text_size: self.size
+    Label:
+        id: flight_time
+        font_size: 15
+        size_hint: .9, .05
+        pos_hint: {'x':.05, 'y':.47}
+        halign: 'center'
+        text_size: self.size
