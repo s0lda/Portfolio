@@ -197,7 +197,7 @@ class KivyPlayer(RelativeLayout):
     # KivyMD File Manager  
     def file_manager_open(self) -> None:
         self.manager_open = True
-        self.file_manager.show('/Users/Komputer/Downloads')
+        self.file_manager.show('/')
 
     def select_path(self, path: str) -> None:
         self.directory = path
