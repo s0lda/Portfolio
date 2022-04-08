@@ -93,7 +93,7 @@ class KivyPlayer(RelativeLayout):
         pass
     
     def loop(self) -> None:
-        # turn off looping
+        # turn off shuffle
         if self.shuffle_audio:
             self.shuffle()
         if self.loop_audio:
@@ -106,7 +106,7 @@ class KivyPlayer(RelativeLayout):
             self.ids.loop_btn.background_down = './res/icons/loop.png'
     
     def shuffle(self) -> None:
-        # turn off shuffle
+        # turn off looping
         if self.loop_audio:
             self.loop()
         if self.shuffle_audio:
