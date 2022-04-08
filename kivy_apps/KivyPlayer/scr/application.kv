@@ -1,0 +1,125 @@
+<KivyPlayer>
+    canvas.before:
+        Color:
+            rgba: (68/255.0, 122/255.0, 156/255.0, 0.2)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Button:
+        id: play_btn
+        background_normal: './res/icons/play.png'
+        background_down: './res/icons/play.png'
+        pos_hint: {'x': 0.2, 'y': 0.04}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.1, self.parent.height * 0.15
+        on_press: root.play_pause()
+    Button:
+        id: next_btn
+        background_normal: './res/icons/next.png'
+        background_down: './res/icons/next.png'
+        pos_hint: {'x': 0.29, 'y': 0.04}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.1, self.parent.height * 0.15
+        on_press: root.change_audio('next')
+    Button:
+        id: prev_btn
+        background_normal: './res/icons/prev.png'
+        background_down: './res/icons/prev.png'
+        pos_hint: {'x': 0.11, 'y': 0.04}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.1, self.parent.height * 0.15
+        on_press: root.change_audio('prev')
+    Button:
+        id: loop_btn
+        background_normal: './res/icons/loop.png'
+        background_down: './res/icons/repeat.png'
+        pos_hint: {'x': 0.38, 'y': 0.04}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.1, self.parent.height * 0.15
+        on_press: root.loop()
+    Button:
+        id: shuffle_btn
+        background_normal: './res/icons/shuffle.png'
+        background_down: './res/icons/shuffle_down.png'
+        pos_hint: {'x': 0.02, 'y': 0.04}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.1, self.parent.height * 0.15
+        on_press: root.shuffle()
+    Button:
+        id: add_btn
+        background_normal: './res/icons/add.png'
+        background_down: './res/icons/add.png'
+        pos_hint: {'x': 0.88, 'y': 0.01}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.1, self.parent.height * 0.14
+        on_press: root.file_manager_open()
+    Label:
+        id: audio_length_label
+        text: '00:00'
+        pos_hint: {'x': 0.4, 'y': 0.12}
+        font_size: 9
+        color: (0, 0, 0, 1)
+        size_hint: None, None
+    Label:
+        id: audio_pos_label
+        text: '00:00'
+        pos_hint: {'x': 0.4, 'y': 0.18}
+        font_size: 9
+        color: (0, 0, 0, 1)
+        size_hint: None, None
+    Label:
+        id: title_label
+        text: 'No file selected'
+        pos_hint: {'x': 0.03, 'y': 0.29}
+        halign: 'center'
+        font_size: 11
+        color: (0, 0, 0, 1)
+        size_hint: 0.4, 0.05
+        text_size: self.size
+        shorten: True
+    Slider:
+        id: progress_bar
+        min: 0
+        max: 0
+        step: 1
+        value: 0
+        orientation: 'horizontal'
+        size_hint: 0.5, 0.05
+        pos_hint: {'x': 0.001, 'y': 0.25}
+        cursor_size: 0, 0
+        value_track: True
+        value_track_color: (68/255.0, 122/255.0, 156/255.0, 1)
+        value_track_width: 4
+        on_touch_up: root.on_slider_move()
+    Image:
+        id: cover_img
+        source: './res/icon.png'
+        pos_hint: {'x': 0.001, 'y': 0.4}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: None, None
+        size: self.parent.width * 0.5, self.parent.height * 0.5    
+
+    ScrollView:
+        size_hint: 0.45, 0.82
+        pos_hint: {'x': 0.53, 'y': 0.15}
+        canvas.before:
+            Color:
+                rgba: 68/255.0, 122/255.0, 156/255.0, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+        MDList:
+            id: playlist
