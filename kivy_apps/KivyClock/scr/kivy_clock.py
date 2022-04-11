@@ -91,7 +91,7 @@ class KivyClock(TabbedPanel):
 
         
     def convert_time(self, time_sec: float) -> str:
-        """Return time in format '00:00' from seconds."""
+        """Return time in format '00:00:00' from seconds."""
         time_min = int(time_sec // 60)
         hours = int(time_min // 60)
         minutes = int(time_min % 60)
