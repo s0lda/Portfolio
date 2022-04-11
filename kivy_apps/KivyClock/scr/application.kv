@@ -1,0 +1,125 @@
+<KivyClock>:
+    id: tab_panel
+    do_default_tab: False
+    size_hint: 1, 1
+    tab_pos: 'bottom_mid'
+    tab_height: '50dp'
+    tab_width: self.width / 3 - 1
+
+    TabbedPanelItem:
+        id: clock_panel
+        text: 'Clock'
+        RelativeLayout:
+            Label:
+                id: time_lbl
+                text: root._time
+                halign: 'center'
+                font_size: 80
+                size_hint: .6, .4
+                pos_hint: {'x': 0.2, 'y': 0.5}
+                color: [1, 1, 1, 1]
+    TabbedPanelItem:
+        id: stopwatch_panel
+        text: 'Stopwatch'
+        RelativeLayout:
+            Label:
+                id: stopwatch_lbl
+                text: '00:00:00'
+                halign: 'center'
+                font_size: 80
+                size_hint: .6 , .4
+                pos_hint: {'x': 0.2, 'y': 0.5}
+                color: [1, 1, 1, 1]
+            Button:
+                id: stopwatch_btn
+                text: 'Start'
+                font_size: 30
+                size_hint: .4, .1
+                pos_hint: {'x': 0.09, 'y': 0.1}
+                on_press: root.set_stopwatch(run=True)
+                background_normal: ''
+                background_color: (36/255, 121/255, 158/255, 1)
+            Button:
+                id: stopwatch_btn_stop
+                text: 'Stop'
+                font_size: 30
+                size_hint: .4, .1
+                pos_hint: {'x': 0.51, 'y': 0.1}
+                on_press: root.set_stopwatch(run=True, stop=True)
+                background_normal: ''
+                background_color: (255/255, 20/255, 83/255, 1)
+                disabled: True
+            Button:
+                id: stopwatch_up_sec
+                text: '>>'
+                font_size: 30
+                size_hint: .1, .07
+                pos_hint: {'x': 0.78, 'y': 0.5}
+                on_press: root.set_stopwatch(up=1)
+            Button:
+                id: stopwatch_down_sec
+                text: '<<'
+                font_size: 30
+                size_hint: .1, .07
+                pos_hint: {'x': 0.68, 'y': 0.5}
+                on_press: root.set_stopwatch(down=1)
+            Button:
+                id: stopwatch_up_min
+                text: '>>'
+                font_size: 30
+                size_hint: .1, .07
+                pos_hint: {'x': 0.5, 'y': 0.5}
+                on_press: root.set_stopwatch(up=60)
+            Button:
+                id: stopwatch_down_min
+                text: '<<'
+                font_size: 30
+                size_hint: .1, .07
+                pos_hint: {'x': 0.4, 'y': 0.5}
+                on_press: root.set_stopwatch(down=60)
+            Button:
+                id: stopwatch_up_h
+                text: '>>'
+                font_size: 30
+                size_hint: .1, .07
+                pos_hint: {'x': 0.22, 'y': 0.5}
+                on_press: root.set_stopwatch(up=3600)
+            Button:
+                id: stopwatch_down_h
+                text: '<<'
+                font_size: 30
+                size_hint: .1, .07
+                pos_hint: {'x': 0.12, 'y': 0.5}
+                on_press: root.set_stopwatch(down=3600)
+    TabbedPanelItem:
+        id: timer_panel
+        text: 'Timer'
+        RelativeLayout:    
+            Label:
+                id: timer_lbl
+                text: '00:00:00'
+                halign: 'center'
+                font_size: 80
+                size_hint: .6 , .4
+                pos_hint: {'x': 0.2, 'y': 0.5}
+                color: [1, 1, 1, 1]
+            Button:
+                id: timer_btn
+                text: 'Start'
+                font_size: 30
+                size_hint: .4, .1
+                pos_hint: {'x': 0.09, 'y': 0.1}
+                on_press: root.set_timer()
+                background_normal: ''
+                background_color: (36/255, 121/255, 158/255, 1)
+            Button:
+                id: timer_btn_stop
+                text: 'Stop'
+                font_size: 30
+                size_hint: .4, .1
+                pos_hint: {'x': 0.51, 'y': 0.1}
+                on_press: root.set_timer(stop=True)
+                background_normal: ''
+                background_color: (255/255, 20/255, 83/255, 1)
+                disabled: True
+            
