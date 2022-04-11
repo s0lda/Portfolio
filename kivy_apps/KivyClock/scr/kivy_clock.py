@@ -10,7 +10,7 @@ from scr.screen_size import get_screen_size
 from datetime import datetime
 
 # stopwatch is a timer and timer is a stopwatch
-# as I thought that's how they were meant to be used
+# as I thought that's how they were meant to be called
 # but it is the other way round
 # only changed name of the tab so it displays correctly in the app.
 
