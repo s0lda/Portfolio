@@ -144,7 +144,7 @@ class KivyPlayer(RelativeLayout):
         try:
             if self.sound:
                 time_sec = self.sound.get_pos()
-                self.ids.audio_pos_label.text = self.secs_to_str_time(time_sec=time_sec)
+                self.ids.audio_pos_label.text = self.convert_time(time_sec=time_sec)
                 self.ids.progress_bar.max = round(self.sound.length)
                 self.ids.progress_bar.value = round(time_sec)
                 if self.sound.state == 'stop':
@@ -165,10 +165,10 @@ class KivyPlayer(RelativeLayout):
     def get_audio_length(self) -> str:
         if self.sound:
             time_sec = self.sound.length
-            return self.secs_to_str_time(time_sec=time_sec)
+            return self.convert_time(time_sec=time_sec)
         return '00:00'
     
-    def secs_to_str_time(self, time_sec: float) -> str:
+    def convert_time(self, time_sec: float) -> str:
         """Return time in format '00:00' from seconds."""
         time_min = int(time_sec // 60)
         hours = int(time_min // 60)
