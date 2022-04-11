@@ -31,8 +31,7 @@ class KivyClock(TabbedPanel):
             if not stop:
                 if self.is_timer_running:
                     self.is_timer_running = False
-                    self.ids.timer_btn.background_color: (36/255, 121/255, 158/255, 1)
-                    self.ids.timer_btn.background_down: (36/255, 121/255, 158/255, 1)
+                    self.ids.timer_btn.background_color = (36/255, 121/255, 158/255, 1)
                     self.ids.timer_btn.text = 'Start'
                 else:
                     self.is_timer_running = True
@@ -47,8 +46,7 @@ class KivyClock(TabbedPanel):
         if not stop:
             if self.is_stopwatch_running:
                 self.is_stopwatch_running = False
-                self.ids.stopwatch_btn.background_color: (36/255, 121/255, 158/255, 1)
-                self.ids.stopwatch_btn.background_down: (36/255, 121/255, 158/255, 1)
+                self.ids.stopwatch_btn.background_color = (36/255, 121/255, 158/255, 1)
                 self.ids.stopwatch_btn.text = 'Start'
             else:
                 self.is_stopwatch_running = True
