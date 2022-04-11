@@ -1,3 +1,8 @@
+# stopwatch is a timer and timer is a stopwatch
+# as I thought that's how they were meant to be used
+# but it is the other way round
+# only changed name of the tab so it displays correctly in the app.
+
 <KivyClock>:
     id: tab_panel
     do_default_tab: False
@@ -20,7 +25,7 @@
                 color: [1, 1, 1, 1]
     TabbedPanelItem:
         id: stopwatch_panel
-        text: 'Stopwatch'
+        text: 'Timer'
         RelativeLayout:
             Label:
                 id: stopwatch_lbl
@@ -93,7 +98,7 @@
                 on_press: root.set_stopwatch(down=3600)
     TabbedPanelItem:
         id: timer_panel
-        text: 'Timer'
+        text: 'Stopwatch'
         RelativeLayout:    
             Label:
                 id: timer_lbl

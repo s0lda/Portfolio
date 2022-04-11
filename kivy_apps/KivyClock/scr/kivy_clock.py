@@ -9,6 +9,11 @@ from kivy.clock import Clock
 from scr.screen_size import get_screen_size
 from datetime import datetime
 
+# stopwatch is a timer and timer is a stopwatch
+# as I thought that's how they were meant to be used
+# but it is the other way round
+# only changed name of the tab so it displays correctly in the app.
+
 class KivyClock(TabbedPanel):
     _time = datetime.now().strftime('%H:%M:%S')
     is_timer_running = False
@@ -19,8 +24,10 @@ class KivyClock(TabbedPanel):
     def set_stopwatch(self, run: bool=False, 
                       stop: bool=False, 
                       up: int=0, down: int=0) -> None:
+        
         self.stop_watch_time += up
         self.stop_watch_time -= down
+        
         if self.stop_watch_time < 0:
             self.stop_watch_time = 0
         
