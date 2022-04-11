@@ -9,89 +9,85 @@ from kivy.clock import Clock
 from scr.screen_size import get_screen_size
 from datetime import datetime
 
-# stopwatch is a timer and timer is a stopwatch
-# as I thought that's how they were meant to be called
-# but it is the other way round
-# only changed name of the tab so it displays correctly in the app.
 
 class KivyClock(TabbedPanel):
     _time = datetime.now().strftime('%H:%M:%S')
+    is_stopwatch_running = False
+    stopwatch_time = 0
     is_timer_running = False
     timer_time = 0
-    is_stopwatch_running = False
-    stop_watch_time = 0
     
-    def set_stopwatch(self, run: bool=False, 
+    def set_timer(self, run: bool=False, 
                       stop: bool=False, 
                       up: int=0, down: int=0) -> None:
         
-        self.stop_watch_time += up
-        self.stop_watch_time -= down
+        self.timer_time += up
+        self.timer_time -= down
         
-        if self.stop_watch_time < 0:
-            self.stop_watch_time = 0
+        if self.timer_time < 0:
+            self.timer_time = 0
         
         if run:
             if not stop:
-                if self.is_stopwatch_running:
-                    self.is_stopwatch_running = False
-                    self.ids.stopwatch_btn.background_color: (36/255, 121/255, 158/255, 1)
-                    self.ids.stopwatch_btn.background_down: (36/255, 121/255, 158/255, 1)
-                    self.ids.stopwatch_btn.text = 'Start'
+                if self.is_timer_running:
+                    self.is_timer_running = False
+                    self.ids.timer_btn.background_color: (36/255, 121/255, 158/255, 1)
+                    self.ids.timer_btn.background_down: (36/255, 121/255, 158/255, 1)
+                    self.ids.timer_btn.text = 'Start'
                 else:
-                    self.is_stopwatch_running = True
-                    self.ids.stopwatch_btn.text = 'Pause'
+                    self.is_timer_running = True
+                    self.ids.timer_btn.text = 'Pause'
             else:
-                self.is_stopwatch_running = False
-                self.stop_watch_time = 0
-                self.ids.stopwatch_lbl.text = self.convert_time(self.stop_watch_time)
-                self.ids.stopwatch_btn.text = 'Start'
-    
-    def set_timer(self, stop: bool=False) -> None:
-        if not stop:
-            if self.is_timer_running:
                 self.is_timer_running = False
-                self.ids.timer_btn.background_color: (36/255, 121/255, 158/255, 1)
-                self.ids.timer_btn.background_down: (36/255, 121/255, 158/255, 1)
+                self.timer_time = 0
+                self.ids.timer_lbl.text = self.convert_time(self.timer_time)
                 self.ids.timer_btn.text = 'Start'
+    
+    def set_stopwatch(self, stop: bool=False) -> None:
+        if not stop:
+            if self.is_stopwatch_running:
+                self.is_stopwatch_running = False
+                self.ids.stopwatch_btn.background_color: (36/255, 121/255, 158/255, 1)
+                self.ids.stopwatch_btn.background_down: (36/255, 121/255, 158/255, 1)
+                self.ids.stopwatch_btn.text = 'Start'
             else:
-                self.is_timer_running = True
-                self.ids.timer_btn.text = 'Pause'
+                self.is_stopwatch_running = True
+                self.ids.stopwatch_btn.text = 'Pause'
         else:
-            self.is_timer_running = False
-            self.timer_time = 0
-            self.ids.timer_lbl.text = self.convert_time(self.timer_time)
-            self.ids.timer_btn.text = 'Start'
+            self.is_stopwatch_running = False
+            self.stopwatch_time = 0
+            self.ids.stopwatch_lbl.text = self.convert_time(self.stopwatch_time)
+            self.ids.stopwatch_btn.text = 'Start'
     
     def callback(self, *args: Any) -> None:
         self._time = datetime.now().strftime('%H:%M:%S')
         self.ids.time_lbl.text = self._time
         
-        if self.is_timer_running:
-            self.timer_time += 1
-            self.ids.timer_lbl.text = self.convert_time(self.timer_time)
-            self.ids.timer_btn.text = 'Pause'
+        if self.is_stopwatch_running:
+            self.stopwatch_time += 1
+            self.ids.stopwatch_lbl.text = self.convert_time(self.stopwatch_time)
+            self.ids.stopwatch_btn.text = 'Pause'
         else:
-            self.ids.timer_btn.text = 'Start'
+            self.ids.stopwatch_btn.text = 'Start'
+        
+        if self.stopwatch_time != 0:
+            self.ids.stopwatch_btn_stop.disabled = False
+        else:
+            self.ids.stopwatch_btn_stop.disabled = True
+            
+        self.ids.timer_lbl.text = self.convert_time(self.timer_time)
         
         if self.timer_time != 0:
             self.ids.timer_btn_stop.disabled = False
+            self.ids.timer_btn.disabled = False
         else:
+            self.ids.timer_btn.disabled = True
             self.ids.timer_btn_stop.disabled = True
             
-        self.ids.stopwatch_lbl.text = self.convert_time(self.stop_watch_time)
-        
-        if self.stop_watch_time != 0:
-            self.ids.stopwatch_btn_stop.disabled = False
-            self.ids.stopwatch_btn.disabled = False
-        else:
-            self.ids.stopwatch_btn.disabled = True
-            self.ids.stopwatch_btn_stop.disabled = True
-            
-        if self.is_stopwatch_running:
-            self.stop_watch_time -= 1
-            if self.stop_watch_time == 0:
-                self.is_stopwatch_running = False
+        if self.is_timer_running:
+            self.timer_time -= 1
+            if self.timer_time == 0:
+                self.is_timer_running = False
 
         
     def convert_time(self, time_sec: float) -> str:
