@@ -1,0 +1,69 @@
+<KivyMap>:
+    MapView:
+        id: map
+        zoom: 10
+        # default latitute and longitude set to London, UK
+        lat: 51.509865
+        lon: -0.118092
+        double_tap_zoom: True
+        size_hint: 1, 1
+        pos_hint: {'x': 0, 'y': 0}
+    TextInput:
+        id: search_input
+        text: ''
+        hint_text: 'Search'
+        size_hint: .4, 0.05
+        pos_hint: {'x': .03, 'y': .9}
+        multiline: False
+        font_size: self.height * 0.65
+        on_text_validate: root.on_search(self.text)
+    Label:
+        id: buttons_background
+        size_hint: .1, 0.05
+        pos_hint: {'x': .02, 'y': .01}
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+    Button:
+        id: home_button
+        background_normal: './res/icons/home.png'
+        background_down: './res/icons/home.png'
+        pos_hint: {'x': 0.025, 'y': 0.014}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: 0.03, 0.045
+        on_press: root.on_home_pressed()
+    Button:
+        id: location_button
+        background_normal: './res/icons/location.png'
+        background_down: './res/icons/location.png'
+        pos_hint: {'x': 0.05, 'y': 0.014}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: .03, .045
+        on_press: root.get_current_location()
+    Button:
+        id: settings_button
+        background_normal: './res/icons/settings.png'
+        background_down: './res/icons/settings.png'
+        pos_hint: {'x': 0.09, 'y': 0.014}
+        keep_ratio: True
+        allow_stretch: True
+        size_hint: .03, .045
+
+
+<SettingsDropDown>:
+    auto_width: False
+    Button:
+        text: 'Set Home'
+        size_hint_y: None
+        height: 44
+        on_release: root.set_home(app.root.lat, app.root.lon)
+    Button:
+        text: 'Remove Home'
+        size_hint_y: None
+        height: 44
+        on_release: root.remove_home()
