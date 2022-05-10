@@ -1,0 +1,198 @@
+<DownloadScreen>:
+    canvas:
+        Color:
+            rgba: 51/255, 51/255, 51/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        Label:
+            text:'URL:'
+            font_size: 14
+            size_hint: .2, .07
+            pos_hint: {'x':.009, 'y':.9}
+            halign: 'left'
+            bold: True
+            text_size: self.size
+        MDTextFieldRound:
+            id: url_input
+            font_size: 12
+            size_hint: .9, .07
+            pos_hint: {'x':.05, 'y':.815}
+            halign: 'center'
+            icon_left: 'web'
+            multiline: False
+            normal_color: 245/255, 245/255, 245/255, 1
+            color_active: 245/255, 245/255, 245/255, 1
+        Label:
+            text:'Download as:'
+            font_size: 14
+            size_hint: .2, .07
+            pos_hint: {'x':.01, 'y':.73}
+            halign: 'left'
+            text_size: self.size
+        CheckBox:
+            id: is_mp3
+            size_hint: .05, .07
+            pos_hint: {'x': .18, 'y': .72}
+        Label:
+            text:'MP3'
+            font_size: 12
+            size_hint: .1, .07
+            pos_hint: {'x': .23, 'y': .73}
+            halign: 'left'
+            text_size: self.size
+        CheckBox:
+            id: is_mp4
+            size_hint: .05, .07
+            pos_hint: {'x': .3, 'y': .72}
+        Label:
+            text:'VIDEO'
+            font_size: 12
+            size_hint: .6, .07
+            pos_hint: {'x': .35, 'y': .73}
+            halign: 'left'
+            text_size: self.size
+        Label:
+            text:'File name:'
+            font_size: 12
+            size_hint: .1, .07
+            pos_hint: {'x': .01, 'y': .2}
+        Label:
+            id: file_name
+            text:''
+            text_size: self.size
+            font_size: 12
+            size_hint: .7, .07
+            pos_hint: {'x': .12, 'y': .2}
+            halign: 'left'
+            valign: 'middle'
+        Label:
+            text:'Download to:'
+            font_size: 12
+            size_hint: .13, .07
+            pos_hint: {'x': .01, 'y': .13}
+        Label:
+            id: download_path
+            text: root.d_path
+            text_size: self.size
+            font_size: 12
+            size_hint: .7, .07
+            pos_hint: {'x': .15, 'y': .13}
+            halign: 'left'
+            valign: 'middle'
+        Label:
+            id: info_lbl
+            text:''
+            text_size: self.size
+            font_size: 14
+            size_hint: .9, .07
+            pos_hint: {'x':.05, 'y':.3}
+            halign: 'center'
+            valign: 'middle'
+        MDFillRoundFlatIconButton:
+            id: download_button
+            text: 'Download'
+            icon: 'download'
+            pos_hint: {'x': 0.4, 'y': 0.6}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.on_download(is_mp3=is_mp3.active, is_mp4=is_mp4.active, url=url_input.text)
+        MDFillRoundFlatIconButton:
+            id: info_button
+            text: 'Info'
+            icon: 'information-variant'
+            pos_hint: {'x': 0.83, 'y': 0.01}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'info_screen'
+        MDFillRoundFlatIconButton:
+            text: 'Change download folder'
+            icon: 'folder-open'
+            pos_hint: {'x': 0.01, 'y': 0.01}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'file_manager'
+<InfoScreen>:
+    canvas:
+        Color:
+            rgba: 51/255, 51/255, 51/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        MDFillRoundFlatIconButton:
+            text: 'Download'
+            icon: 'download'
+            pos_hint: {'x': 0.77, 'y': 0.01}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'download_screen'
+        Label:
+            text: 'YouTube Downloader'
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.8}
+        Label:
+            text: 'Only download files you have copyrights to.'
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.73}
+        Label:
+            text: 'You can download videos from YouTube as also download it as a mp3.'
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.68}
+        Label:
+            text: 'Created by: '
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.4}
+        Label:
+            text: 'soft_ware@engineer.com'
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.35}
+        Label:
+            text: 'Any enquiries, please contact me.'
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.3}
+        Label:
+            text: 'Version: 1.1.0'
+            halign: 'center'
+            size_hint: 0.8, 0.1
+            pos_hint: {'x': 0.1, 'y': 0.1}
+<FileManager>:
+    canvas:
+        Color:
+            rgba: 51/255, 51/255, 51/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        FileChooserListView:
+            id: file_chooser
+            path: app.current_path
+            size_hint: 1, .8
+            pos_hint: {'x': 0, 'y': .2}
+        MDFillRoundFlatIconButton:
+            text: 'Cancel'
+            icon: 'cancel'
+            pos_hint: {'x': 0.25, 'y': 0.05}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'download_screen'
+        MDFillRoundFlatIconButton:
+            text: 'Select'
+            icon: 'folder-move'
+            pos_hint: {'x': 0.55, 'y': 0.05}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                app.change_d_path(file_chooser.path)
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'download_screen'
