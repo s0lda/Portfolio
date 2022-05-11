@@ -25,9 +25,6 @@ class SplashScreen(Screen):
 class FileManager(Screen):
     pass
 
-class HistoryScreen(Screen):
-    pass
-
 class InfoScreen(Screen):
     pass
 
