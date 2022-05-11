@@ -16,7 +16,7 @@ class SplashScreen(Screen):
     '''
     def on_enter(self, *args: Any) -> None:
         '''Set on enter activities.'''
-        Clock.schedule_once(self.switch_to_download, 5)
+        Clock.schedule_once(self.switch_to_download, 4)
     
     def switch_to_download(self, dt: float) -> None:
         '''Switch to download screen.'''
