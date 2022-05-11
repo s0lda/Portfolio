@@ -55,7 +55,8 @@ class DownloadScreen(Screen):
         
         pool = ThreadPool(processes=1)
         _downloader = Downloader(self.d_path)
-        self.async_result = pool.apply_async(_downloader.download, (self.is_mp3, self.is_mp4, self.url))
+        self.async_result = pool.apply_async(_downloader.download,
+                                             (self.is_mp3, self.is_mp4, self.url))
         Clock.schedule_interval(self.check_process, 0.1)
         
     def check_process(self, dt: float) -> None:
