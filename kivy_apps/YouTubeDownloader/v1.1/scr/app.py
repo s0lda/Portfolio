@@ -90,6 +90,10 @@ class DownloadScreen(Screen):
         self.ids.progress_bar.value = self.progress_value
     
     def stop_progress_bar(self, value: int) -> None:
+        '''
+        Will stop progress bar schedule and progress bar will stop
+        at desired value. 0 for error and 100 for success.
+        '''
         self.ids.progress_bar.value = value
         Clock.unschedule(self.start_progress_bar)
         self.progress_value = 0
