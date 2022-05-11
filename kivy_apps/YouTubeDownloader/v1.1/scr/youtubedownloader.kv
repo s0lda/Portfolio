@@ -90,6 +90,7 @@
             pos_hint: {'x':.05, 'y':.3}
             halign: 'center'
             valign: 'middle'
+            bold: True
         MDFillRoundFlatIconButton:
             id: download_button
             text: 'Download'
@@ -115,6 +116,12 @@
             on_press:
                 root.manager.transition.direction = 'left'
                 root.manager.current = 'file_manager'
+        ProgressBar:
+            id: progress_bar
+            size_hint: .9, .07
+            pos_hint: {'x':.05, 'y':.5}
+            max: 100
+            value: 0
 <InfoScreen>:
     canvas:
         Color:
@@ -196,3 +203,18 @@
                 app.change_d_path(file_chooser.path)
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'download_screen'
+<SplashScreen>:
+    canvas:
+        Color:
+            rgba: 51/255, 51/255, 51/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        size_hint: 1, 1
+        pos_hint: {'x': 0, 'y': 0}
+        canvas.after:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: './res/icon.png'

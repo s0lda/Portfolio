@@ -1,13 +1,26 @@
+from typing import Any
 from kivy.config import Config
 Config.set('graphics', 'resizable', False)
-
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from scr.screen_size import get_screen_size
 from scr.ytdownloader import Downloader
 from pathlib import Path
+from kivy.clock import Clock
+from multiprocessing.pool import ThreadPool
 
+class SplashScreen(Screen):
+    '''
+    Splash Screen Class. Does nothing apart of displaying app logo.
+    '''
+    def on_enter(self, *args: Any) -> None:
+        '''Set on enter activities.'''
+        Clock.schedule_once(self.switch_to_download, 5)
+    
+    def switch_to_download(self, dt: float) -> None:
+        '''Switch to download screen.'''
+        self.manager.current = 'download_screen'
 
 class FileManager(Screen):
     pass
@@ -20,25 +33,66 @@ class InfoScreen(Screen):
 
 class DownloadScreen(Screen):
     d_path = str(Path.home() / 'Downloads')
+    progress_value = 0
     
     def on_download(self, is_mp3: bool, is_mp4: bool, url: str) -> None:
         if is_mp3 == False and is_mp4 == False:
             self.ids.info_lbl.text = 'Please select a type of file to download.'
         else:
-            self.ids.info_lbl.text = ''
+            self.ids.info_lbl.text = 'Downloading...'
             
-            _downloader = Downloader(self.d_path)
+            self.is_mp3 = is_mp3
+            self.is_mp4 = is_mp4
+            self.url = url
             
-            resp = _downloader.download(is_mp3, is_mp4, url)
+            Clock.schedule_once(self.schedule_download, 2)
+            Clock.schedule_interval(self.start_progress_bar, 0.1)
+            
+    def schedule_download(self, dt: float) -> None:
+        '''
+        Callback method for the download.
+        '''
+        
+        pool = ThreadPool(processes=1)
+        _downloader = Downloader(self.d_path)
+        self.async_result = pool.apply_async(_downloader.download, (self.is_mp3, self.is_mp4, self.url))
+        Clock.schedule_interval(self.check_process, 0.1)
+        
+    def check_process(self, dt: float) -> None:
+        if self.async_result.ready():
+            resp = self.async_result.get()
+
             if resp[0] == 'Error. Download failed.':
                 self.ids.info_lbl.text = resp[0]
-            else:    
+                # progress bar gray if error
+                self.stop_progress_bar(value=0)
+            else:
+                # progress bar blue if success
+                self.stop_progress_bar(value=100)
                 self.ids.file_name.text = resp[0]
-            self.ids.url_input.text = ''
+                self.ids.info_lbl.text = 'Finished downloading.'
+                self.ids.url_input.text = ''
+            
+            Clock.unschedule(self.check_process)
+           
     
     def update_path_lbl(self) -> None:
         print(self.d_path)
         self.ids.download_path.text = self.d_path
+        
+    def start_progress_bar(self, dt: float) -> None:
+        '''
+        Callback method for progress bar.
+        '''
+        self.progress_value += 1
+        if self.progress_value >= 100:
+            self.progress_value = 0
+        self.ids.progress_bar.value = self.progress_value
+    
+    def stop_progress_bar(self, value: int) -> None:
+        self.ids.progress_bar.value = value
+        Clock.unschedule(self.start_progress_bar)
+        self.progress_value = 0
 
 class YouTubeDownloader(MDApp):
     title = 'Youtube Downloader'
@@ -58,7 +112,10 @@ class YouTubeDownloader(MDApp):
     current_path = DownloadScreen().d_path
     
     def change_d_path(self, path: str) -> None:
-        '''Changes the download path across the application.'''
+        '''
+        Changes the download path across the application.
+        Will update d_path in DownloadScreen.
+        '''
         self.current_path = path
         dowload_screen = self.get_instance_of_download_screen()
         dowload_screen.d_path = self.current_path
@@ -70,6 +127,7 @@ class YouTubeDownloader(MDApp):
         
     def build(self) -> ScreenManager:
         self.sm = ScreenManager()
+        self.sm.add_widget(SplashScreen(name='splash_screen'))
         self.sm.add_widget(DownloadScreen(name='download_screen'))
         self.sm.add_widget(InfoScreen(name='info_screen'))
         self.sm.add_widget(FileManager(name='file_manager'))
