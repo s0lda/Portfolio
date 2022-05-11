@@ -59,6 +59,9 @@ class DownloadScreen(Screen):
         Clock.schedule_interval(self.check_process, 0.1)
         
     def check_process(self, dt: float) -> None:
+        '''
+        Check if download is complete.
+        '''
         if self.async_result.ready():
             resp = self.async_result.get()
 
@@ -75,7 +78,6 @@ class DownloadScreen(Screen):
             
             Clock.unschedule(self.check_process)
            
-    
     def update_path_lbl(self) -> None:
         print(self.d_path)
         self.ids.download_path.text = self.d_path
