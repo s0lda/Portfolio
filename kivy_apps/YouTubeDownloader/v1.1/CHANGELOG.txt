@@ -2,11 +2,13 @@
 ***
 Ver: 1.1.0
 
-Added:
+Changed:
     Improved download process. Downloading won't freeze GUI.
+    GUI changes.
+
+Added:
     Option to change download folder.
     Information button.
     Loading in progress bar (to be replaced by proper progress bar
     in future release).
-    GUI changes.
     Added Splash Screen.
