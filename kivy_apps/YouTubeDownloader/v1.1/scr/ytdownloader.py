@@ -1,6 +1,7 @@
 from pytube import YouTube
 from pytube.cli import on_progress
 import os
+from typing import Any
 
 class Downloader:
     def __init__(self, download_path: str) -> None:
@@ -31,13 +32,15 @@ class Downloader:
                 print(video.streams.get_highest_resolution())
                 video.streams.get_highest_resolution().download(filename=new_name,
                                                                 output_path=self._d_path)
+            if is_mp3 and is_mp4:
+                new_name = f'{name}  .mp3 .mp4'
         except:
             new_name = 'Error. Download failed.'
             self._d_path = ''
         return new_name, self._d_path
 
     def get_file_size(self, url: str, is_mp3: bool, is_mp4: bool) -> int:
-        '''Returns the size of the file in bytes.'''
+        '''Returns the size of the file(s) to download in bytes.'''
         file_size: int = 0
         if is_mp3:
             file_size += YouTube(url).streams.get_audio_only().filesize
