@@ -77,7 +77,6 @@ class DownloadScreen(Screen):
             Clock.unschedule(self.check_process)
            
     def update_path_lbl(self) -> None:
-        print(self.d_path)
         self.ids.download_path.text = self.d_path
         
     def start_progress_bar(self, dt: float) -> None:
