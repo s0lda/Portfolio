@@ -1,14 +1,19 @@
 from typing import Any
+
 from kivy.config import Config
 Config.set('graphics', 'resizable', False)
-from kivymd.app import MDApp
-from kivy.uix.screenmanager import ScreenManager, Screen
+
+from multiprocessing.pool import ThreadPool
+from pathlib import Path
+
+from kivy.clock import Clock
 from kivy.core.window import Window
+from kivy.uix.screenmanager import Screen, ScreenManager
+from kivymd.app import MDApp
+
 from scr.screen_size import get_screen_size
 from scr.ytdownloader import Downloader
-from pathlib import Path
-from kivy.clock import Clock
-from multiprocessing.pool import ThreadPool
+
 
 class SplashScreen(Screen):
     '''
