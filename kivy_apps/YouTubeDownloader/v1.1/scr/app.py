@@ -125,13 +125,13 @@ class YouTubeDownloader(MDApp):
         Will update d_path in DownloadScreen.
         '''
         self.current_path = path
-        dowload_screen = self.get_instance_of_download_screen()
-        dowload_screen.d_path = self.current_path
-        dowload_screen.update_path_lbl()
+        dowload_screen = self.get_screen_instance('download_screen')
+        dowload_screen.d_path = self.current_path # type: ignore
+        dowload_screen.update_path_lbl()          # type: ignore
         
-    def get_instance_of_download_screen(self) -> DownloadScreen:
-        '''Will return current instance of DownloadScreen for updating GUI.'''
-        return MDApp.get_running_app().root.get_screen('download_screen')
+    def get_screen_instance(self, screen_name: str) -> Screen:
+        '''Return instance of Screen class.'''
+        return MDApp.get_running_app().root.get_screen(screen_name)
         
     def build(self) -> ScreenManager:
         self.sm = ScreenManager()
