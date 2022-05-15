@@ -69,7 +69,7 @@ class DownloadScreen(Screen):
         '''
         if self.async_result.ready():
             resp = self.async_result.get()
-
+            
             if resp[0] == 'Error. Download failed.':
                 self.ids.info_lbl.text = resp[0]
                 # progress bar gray if error
