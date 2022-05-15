@@ -1,11 +1,12 @@
 from pytube import YouTube
-from pytube.cli import on_progress
+from pytube.cli import Stream
 import os
-from typing import Any
 
 class Downloader:
     def __init__(self, download_path: str) -> None:
         self._d_path = download_path
+        self.bytes_received = 0
+        self.file_size = 0
 
     def download(self, is_mp3: bool, is_mp4: bool, url: str) -> tuple[str, str]:
         '''
@@ -16,7 +17,7 @@ class Downloader:
         
         new_name = ''
         try:
-            video = YouTube(url=url, on_progress_callback=on_progress)
+            video = YouTube(url=url, on_progress_callback=self.on_progress)
             name: str = video.title
             print(name)
             # '/', '|' and '\' need to be removed from the name
@@ -38,15 +39,6 @@ class Downloader:
             new_name = 'Error. Download failed.'
             self._d_path = ''
         return new_name, self._d_path
-
-    def get_file_size(self, url: str, is_mp3: bool, is_mp4: bool) -> int:
-        '''Returns the size of the file(s) to download in bytes.'''
-        file_size: int = 0
-        if is_mp3:
-            file_size += YouTube(url).streams.get_audio_only().filesize
-        if is_mp4:
-            file_size += YouTube(url).streams.get_highest_resolution().filesize
-        return file_size
     
     def check_file_exists(self, path: str, name: str, suffix: str) -> str:
         '''
@@ -62,3 +54,17 @@ class Downloader:
         if os.path.exists(file_to_check):
             return f'{name}#{suffix}'
         return f'{name}{suffix}'
+
+    def on_progress(self, stream: Stream, chunk: bytes, bytes_remaining: int) -> None:
+        '''Callback for downloader. Will set downloaded file size and progress.'''
+        self.file_size = stream.filesize
+        bytes_received = self.file_size - bytes_remaining
+        self.bytes_received = bytes_received
+    
+    def get_bytes_received(self) -> int:
+        '''Returns the number of bytes received.'''
+        return self.bytes_received
+    
+    def get_file_size(self) -> int:
+        '''Return size of the file to download.'''
+        return self.file_size

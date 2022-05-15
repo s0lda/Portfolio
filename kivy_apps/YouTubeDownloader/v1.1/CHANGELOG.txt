@@ -1,5 +1,13 @@
 
 ***
+Ver: 1.1.1
+
+Changed:
+    Download in progress changed to 'proper' download bar and that one
+    shows actual download progress.
+
+
+***
 Ver: 1.1.0
 
 Changed:
@@ -12,3 +20,9 @@ Added:
     Downloading in progress bar (to be replaced by proper progress bar
     in future release).
     Added Splash Screen.
+
+
+***
+Ver: 1.0.0
+
+Created YouTube Downloader.

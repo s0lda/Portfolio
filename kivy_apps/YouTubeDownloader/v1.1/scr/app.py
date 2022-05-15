@@ -36,6 +36,7 @@ class InfoScreen(Screen):
 class DownloadScreen(Screen):
     d_path = str(Path.home() / 'Downloads')
     progress_value = 0
+    _downloader = Downloader(d_path)
     
     def on_download(self, is_mp3: bool, is_mp4: bool, url: str) -> None:
         if is_mp3 == False and is_mp4 == False:
@@ -57,6 +58,7 @@ class DownloadScreen(Screen):
         
         pool = ThreadPool(processes=1)
         _downloader = Downloader(self.d_path)
+        self._downloader = _downloader
         self.async_result = pool.apply_async(_downloader.download,
                                              (self.is_mp3, self.is_mp4, self.url))
         Clock.schedule_interval(self.check_process, 0.1)
@@ -88,9 +90,11 @@ class DownloadScreen(Screen):
         '''
         Callback method for progress bar.
         '''
-        self.progress_value += 1
-        if self.progress_value >= 100:
-            self.progress_value = 0
+        # self.progress_value += 1
+        # if self.progress_value >= 100:
+        #     self.progress_value = 0
+        self.ids.progress_bar.max = self._downloader.get_file_size()
+        self.progress_value = self._downloader.get_bytes_received()
         self.ids.progress_bar.value = self.progress_value
     
     def stop_progress_bar(self, value: int) -> None:
