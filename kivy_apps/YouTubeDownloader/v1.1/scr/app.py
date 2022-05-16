@@ -33,6 +33,9 @@ class FileManager(Screen):
 class InfoScreen(Screen):
     pass
 
+class HistoryScreen(Screen):
+    pass
+
 class DownloadScreen(Screen):
     d_path = str(Path.home() / 'Downloads')
     progress_value = 0
@@ -143,4 +146,5 @@ class YouTubeDownloader(MDApp):
         self.sm.add_widget(DownloadScreen(name='download_screen'))
         self.sm.add_widget(InfoScreen(name='info_screen'))
         self.sm.add_widget(FileManager(name='file_manager'))
+        self.sm.add_widget(HistoryScreen(name='history_screen'))
         return self.sm

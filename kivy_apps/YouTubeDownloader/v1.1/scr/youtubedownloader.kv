@@ -109,6 +109,15 @@
                 root.manager.transition.direction = 'left'
                 root.manager.current = 'info_screen'
         MDFillRoundFlatIconButton:
+            id: history_button
+            text: 'History'
+            icon: 'history'
+            pos_hint: {'x': 0.635, 'y': 0.01}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.manager.transition.direction = 'left'
+                root.manager.current = 'history_screen'
+        MDFillRoundFlatIconButton:
             text: 'Change download folder'
             icon: 'folder-open'
             pos_hint: {'x': 0.01, 'y': 0.01}
@@ -203,6 +212,22 @@
                 app.change_d_path(file_chooser.path)
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'download_screen'
+<HistoryScreen>:
+    canvas:
+        Color:
+            rgba: 51/255, 51/255, 51/255, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    RelativeLayout:
+        MDFillRoundFlatIconButton:
+            text: 'Download'
+            icon: 'download'
+            pos_hint: {'x': 0.77, 'y': 0.01}
+            md_bg_color: 64/255, 120/255, 192/255, 1
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'download_screen'
 <SplashScreen>:
     canvas:
         Color:
@@ -218,3 +243,4 @@
                 pos: self.pos
                 size: self.size
                 source: './res/icon.png'
+
