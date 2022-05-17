@@ -1,6 +1,7 @@
 from pytube import YouTube
 from pytube.cli import Stream
 import os
+from datetime import datetime
 
 class Downloader:
     def __init__(self, download_path: str) -> None:
@@ -51,8 +52,12 @@ class Downloader:
         '''
         
         file_to_check = f'{path}/{name}{suffix}'
+        # Not the best and most efficient way
+        # but will do until next update.
         if os.path.exists(file_to_check):
-            return f'{name}#{suffix}'
+            time = datetime.now()
+            micro = time.microsecond
+            return f'{name}#{micro}#{suffix}'
         return f'{name}{suffix}'
 
     def on_progress(self, stream: Stream, chunk: bytes, bytes_remaining: int) -> None:

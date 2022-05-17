@@ -5,11 +5,14 @@ Config.set('graphics', 'resizable', False)
 
 from multiprocessing.pool import ThreadPool
 from pathlib import Path
+from datetime import datetime
 
 from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.app import MDApp
+from kivymd.uix.datatables import MDDataTable
+from kivy.metrics import dp
 
 from scr.screen_size import get_screen_size
 from scr.ytdownloader import Downloader
@@ -34,7 +37,32 @@ class InfoScreen(Screen):
     pass
 
 class HistoryScreen(Screen):
-    pass
+    def load_table(self) -> None:
+        '''Loads the table.'''
+        # layout = AnchorLayout()
+        self.table = MDDataTable(
+            size_hint=(0.96, 0.82),
+            pos_hint={'x': 0.02, 'y': 0.15},
+            use_pagination=True,
+            check=False,
+            column_data=[
+                ('Name', dp(59)),
+                ('Time', dp(20)),
+                ('Date', dp(20)),
+            ],
+            row_data=[
+                (
+                    f'{i[0]}',
+                    f'{i[1]}',
+                    f'{i[2]}',
+                )
+                for i in YouTubeDownloader().get_download_history()
+            ]
+        )
+        self.add_widget(self.table)
+        
+    def on_enter(self, *args: Any) -> None:
+        self.load_table()
 
 class DownloadScreen(Screen):
     d_path = str(Path.home() / 'Downloads')
@@ -83,6 +111,11 @@ class DownloadScreen(Screen):
                 self.ids.file_name.text = resp[0]
                 self.ids.info_lbl.text = 'Finished downloading.'
                 self.ids.url_input.text = ''
+                
+                time = datetime.now()
+                date = time.strftime("%d/%m/%Y")
+                time = time.strftime("%H:%M:%S")
+                YouTubeDownloader().add_to_history(resp[0], time, date)
             
             Clock.unschedule(self.check_process)
            
@@ -112,6 +145,7 @@ class DownloadScreen(Screen):
 class YouTubeDownloader(MDApp):
     title = 'Youtube Downloader'
     icon = './res/icon.png'
+    history: list[tuple[str, str, str]] = []
     
     app_width, app_height = 550, 400
     _screen_size = get_screen_size()
@@ -138,7 +172,14 @@ class YouTubeDownloader(MDApp):
         
     def get_screen_instance(self, screen_name: str) -> Screen:
         '''Return instance of Screen class.'''
-        return MDApp.get_running_app().root.get_screen(screen_name)
+        return MDApp.get_running_app().root.get_screen(screen_name) # type: ignore
+    
+    def add_to_history(self, name: str, time: str, date: str) -> None:
+        item = (name, time, date)
+        self.history.append(item)
+        
+    def get_download_history(self) -> list[tuple[str, str, str]]:
+        return self.history
         
     def build(self) -> ScreenManager:
         self.sm = ScreenManager()

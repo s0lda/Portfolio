@@ -6,6 +6,10 @@ Changed:
     Download in progress changed to 'proper' download bar and that one
     shows actual download progress.
 
+Added:
+    Download history for current session. History will disappear after closing
+    the app, history data won't be stored.
+
 
 ***
 Ver: 1.1.0
