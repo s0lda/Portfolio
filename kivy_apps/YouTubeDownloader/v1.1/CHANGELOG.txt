@@ -3,11 +3,13 @@
 Ver: 1.1.1
 
 Changed:
-    Download in progress changed to 'proper' download bar and that one
+    * Downloads with the same name will now have added micro seconds from current time
+    rather than '#'.
+    * Download in progress changed to 'proper' download bar and that one
     shows actual download progress.
 
 Added:
-    Download history for current session. History will disappear after closing
+    * Download history for current session. History will disappear after closing
     the app, history data won't be stored.
 
 
@@ -15,18 +17,18 @@ Added:
 Ver: 1.1.0
 
 Changed:
-    Improved download process. Downloading won't freeze GUI.
-    GUI changes.
+    * Improved download process. Downloading won't freeze GUI.
+    * GUI changes.
 
 Added:
-    Option to change download folder.
-    Information button.
-    Downloading in progress bar (to be replaced by proper progress bar
+    * Option to change download folder.
+    * Information button.
+    * Downloading in progress bar (to be replaced by proper progress bar
     in future release).
-    Added Splash Screen.
+    * Added Splash Screen.
 
 
 ***
 Ver: 1.0.0
 
-Created YouTube Downloader.
+*** Created YouTube Downloader. ***
