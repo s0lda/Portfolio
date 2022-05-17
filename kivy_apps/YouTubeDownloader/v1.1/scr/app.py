@@ -38,8 +38,7 @@ class InfoScreen(Screen):
 
 class HistoryScreen(Screen):
     def load_table(self) -> None:
-        '''Loads the table.'''
-        # layout = AnchorLayout()
+        '''Loads the table with download history.'''
         self.table = MDDataTable(
             size_hint=(0.96, 0.82),
             pos_hint={'x': 0.02, 'y': 0.15},
