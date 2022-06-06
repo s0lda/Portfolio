@@ -1,0 +1,105 @@
+ScreenManager:
+    id: screen_manager
+
+    SplashScreen:
+        id: splash_screen
+        name: 'splash_screen'
+        manager: screen_manager
+
+    MainScreen:
+        id: main_screen
+        name: 'main_screen'
+        manager: screen_manager
+
+
+<MainScreen>:
+    RelativeLayout:
+        canvas:
+            Color:
+                rgba: 51/255, 51/255, 51/255, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            id: cpu_name
+            text: root.cpu_name
+            text_size: self.width, None
+            halign: 'center'
+            size_hint: 1, 0.05
+            pos_hint: {'x': 0, 'y': 0.85}
+        ProgressBar:
+            id: cpu_usage
+            size_hint: 0.9, 0.05
+            pos_hint: {'x': 0.05, 'y': 0.8}
+        Label:
+            text:'Memory:'
+            text_size: self.width, None
+            halign: 'left'
+            size_hint: 0.96, 0.05
+            pos_hint: {'x': 0.04, 'y': 0.75}
+        Label:
+            id: total_ram
+            text: root.ram
+            text_size: self.width, None
+            halign: 'right'
+            size_hint: 0.96, 0.05
+            pos_hint: {'x': 0, 'y': 0.75}
+        ProgressBar:
+            id: ram_usage
+            max: root.total_ram
+            size_hint: 0.9, 0.05
+            pos_hint: {'x': 0.05, 'y': 0.7}
+        Label:
+            id: gpu_name
+            text: root.gpu_name
+            text_size: self.width, None
+            halign: 'center'
+            size_hint: 1, 0.05
+            pos_hint: {'x': 0, 'y': 0.62}
+        Label:
+            text:'GPU Temp:'
+            text_size: self.width, None
+            halign: 'left'
+            size_hint: 0.96, 0.05
+            pos_hint: {'x': 0.04, 'y': 0.57}
+        Label:
+            id: gpu_temp
+            text_size: self.width, None
+            halign: 'right'
+            size_hint: 0.96, 0.05
+            pos_hint: {'x': 0, 'y': 0.57}
+        ProgressBar:
+            id: gpu_load
+            size_hint: 0.9, 0.05
+            pos_hint: {'x': 0.05, 'y': 0.52}
+        Label:
+            text: 'Storage:'
+            text_size: self.width, None
+            halign: 'left'
+            size_hint: 0.96, 0.05
+            pos_hint: {'x': 0.04, 'y': 0.45}
+        Label:
+            id: storage_total
+            text: root.total_storage
+            text_size: self.width, None
+            halign: 'right'
+            size_hint: 0.96, 0.05
+            pos_hint: {'x': 0, 'y': 0.45}
+        ProgressBar:
+            id: storage_usage
+            size_hint: 0.9, 0.05
+            pos_hint: {'x': 0.05, 'y': 0.4}
+        
+<SplashScreen>:
+    RelativeLayout:
+        canvas:
+            Color:
+                rgba: 51/255, 51/255, 51/255, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Image:
+            source: "./res/icon.png"
+            allow_stretch: False
+            size_hint: 1, 0.4
+            pos_hint: {'x': 0, 'y': 0.3}
